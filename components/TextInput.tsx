@@ -1,7 +1,17 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
+import PropTypes from 'prop-types';
 
-export const TextInputC = (props: any) => {
+type textInputProps = {
+  style?: object | any,
+  onChangeText?: Function | any,
+  placeholder?: string | undefined,
+  value?: string,
+  keyboardType?: string | any,
+  icon?: PropTypes.ReactElementLike,
+}
+
+export const TextInputC = (props: textInputProps) => {
   const [textState, setTextState] = useState("");
 
   return (

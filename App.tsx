@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,11 +10,17 @@ import {
   SafeAreaView,
   KeyboardAvoidingView,
 } from "react-native";
-import { Login } from "./screens/Login.screen";
+import { LoginScreen } from "./screens/Login.screen";
 import { colors } from "./components/Color";
-import { SignUpScreen } from "./screens/Signup.screen";
+//import { SignUpScreen } from "./screens/Signup.screen";
+import { TempScreen } from "./screens/Temp.screen";
+import { CardScreen } from "./screens/Card.screen";
 import { KeyboardAvoidingC } from "./components/AvoidKeyboardView";
+//import { HomeScreen } from "./screens/Home.screen";
+import { Nav } from "./navigation/Nav";
+
 export default function App() {
+
   return (
     <SafeAreaView style={styles.rootSafeArea}>
       <View style={styles.rootViewContainer}>
@@ -23,8 +29,10 @@ export default function App() {
           style="dark"
           translucent={false}
         />
-        {/* <KeyboardAvoidingC component={<SignUpScreen />} /> */}
-        <KeyboardAvoidingC component={<Login />} />
+        {/* <CardScreen /> */}
+        {/* <TempScreen/> */}
+        {/* <KeyboardAvoidingC component={<TempScreen />} /> */}
+        <KeyboardAvoidingC component={<Nav />} />
       </View>
     </SafeAreaView>
   );

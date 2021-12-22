@@ -73,7 +73,7 @@ export const SignUpScreen = () => {
           icon={<Feather name="lock" size={24} color={colors.FOREST_GREEN} />}
         />
         <TextInputC
-          placeholder="Password"
+          placeholder="Confirm password"
           icon={<Feather name="lock" size={24} color={colors.FOREST_GREEN} />}
         />
         <CheckBoxC />
@@ -148,4 +148,5 @@ const styles = StyleSheet.create({
     color: colors.DIM_GRAY,
     fontWeight: "bold",
   },
+  
 });
