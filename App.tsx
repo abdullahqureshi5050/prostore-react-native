@@ -15,6 +15,7 @@ import { colors } from "./components/Color";
 //import { SignUpScreen } from "./screens/Signup.screen";
 import { TempScreen } from "./screens/Temp.screen";
 import { CardScreen } from "./screens/Card.screen";
+import { AnimatedC } from "./components/temp/Animation";
 import { KeyboardAvoidingC } from "./components/AvoidKeyboardView";
 //import { HomeScreen } from "./screens/Home.screen";
 import { Nav } from "./navigation/Nav";
@@ -32,6 +33,7 @@ export default function App() {
         {/* <CardScreen /> */}
         {/* <TempScreen/> */}
         {/* <KeyboardAvoidingC component={<TempScreen />} /> */}
+        {/* <AnimatedC/> */}
         <KeyboardAvoidingC component={<Nav />} />
       </View>
     </SafeAreaView>

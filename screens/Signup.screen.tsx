@@ -3,7 +3,8 @@ import {
   StyleSheet,
   View,
   Text,
-  Alert
+  Alert,
+  ScrollView
 } from "react-native";
 import { TextInputC } from "../components/TextInput";
 import { ButtonC } from "../components/Button";
@@ -19,6 +20,7 @@ export const SignUpScreen = () => {
   return (
    
     <View style={styles.root}>
+      <ScrollView>
       <View>
         <View>
           <Text style={styles.signUpText}>
@@ -99,6 +101,7 @@ export const SignUpScreen = () => {
           }
         </Text>
       </View>
+      </ScrollView>
     </View>
     
   );
@@ -107,7 +110,7 @@ export const SignUpScreen = () => {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    margin: 20,
+    //margin: 20,
     backgroundColor: colors.WHITE,
     // android
     elevation: 2,

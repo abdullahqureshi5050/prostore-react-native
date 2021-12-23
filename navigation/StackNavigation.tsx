@@ -19,8 +19,19 @@ export const StackNavigation = () => {
 };
 
 const BottomStackScreenOptions = {
-  headerTitle: '',
+  //headerLargeTitle: 'S',
+  //headerLargeTitle: true,
+  //headerTitleStyle: {fontSize: 20, fontWeight: 'bold'},
+  //headerTitle: 'SIVISIC',
   headerShown: false,
+  //headerStyle: {
+    //height: 10,
+    //backgroundColor: 'red'
+  //},
+
+  // headerStyle: {
+  //   height: 30, // Specify the height of your custom header
+  // },
   headerBackTitleVisible: false,
     headerRight: (navigation: any)=> <Ionicons name='notifications-outline' size={25} onPress={()=>{return navigation.navigate('SignUpStackNav') }} />
 }
