@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { LoginScreen } from "../screens/Login.screen";
 import { SignUpScreen } from "../screens/Signup.screen";
-import { MoreScreen } from "../screens/More.screen";
+import { SettingsScreen } from "../screens/Settings.screen";
 import { HomeScreen } from "../screens/Home.screen";
 //import AppScreen from "../screens/App.screen";
-import { Ionicons, Entypo, Feather, FontAwesome5 } from "@expo/vector-icons";
+import {
+  Ionicons,
+  Entypo,
+  Feather,
+  FontAwesome5,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import { colors } from "../components/Color";
 
 //const Tab = createMaterialBottomTabNavigator();
@@ -15,26 +21,38 @@ import { colors } from "../components/Color";
 const Tab = createBottomTabNavigator();
 
 export const BottomStackNav = function () {
+
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarInactiveTintColor: colors.FOREST_GREEN,
+        tabBarActiveTintColor: colors.BLACK,
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={HomeScreen}
         options={{
           //headerTintColor: colors.FOREST_GREEN,
-         // tabBarActiveTintColor: colors.FOREST_GREEN,
+          // tabBarActiveTintColor: colors.FOREST_GREEN,
           //headerShown: false,
           headerStyle: {
             height: 30, // Specify the height of your custom header
           },
-          headerRight: ()=><Text>R</Text>,
-          headerLeft: ()=><Text>L</Text>,
+          headerRight: () => <Text>R</Text>,
+          headerLeft: () => <Text>L</Text>,
           //headerTitleStyle: {width: '100%', alignItems: 'flex-end', backgroundColor: 'red', fontSize: 20},
           //headerTitleAllowFontScaling: true,
           //headerRightContainerStyle: { maxWidth: 30, alignItems: 'flex-end' , backgroundColor: 'lightblue'},
           tabBarIcon: (props: any) => {
-            return (
-              <Ionicons
+            return props.focused ? (
+              <MaterialCommunityIcons
+                name="home"
+                size={props.size || 24}
+                color={props.color || colors.FOREST_GREEN}
+              />
+            ) : (
+              <MaterialCommunityIcons
                 name="home-outline"
                 size={props.size || 24}
                 color={props.color || colors.FOREST_GREEN}
@@ -47,15 +65,21 @@ export const BottomStackNav = function () {
         name="My Lists"
         component={SignUpScreen}
         options={{
-        //  tabBarActiveTintColor: colors.FOREST_GREEN,
-         // headerShown: true,
-         headerStyle: {
-          height: 30, // Specify the height of your custom header
-        },
+          //  tabBarActiveTintColor: colors.FOREST_GREEN,
+          // headerShown: true,
+          headerStyle: {
+            height: 30, // Specify the height of your custom header
+          },
           tabBarIcon: (props: any) => {
-            return (
-              <FontAwesome5
-                name="list-ul"
+            return props.focused ? (
+              <MaterialCommunityIcons
+                name="format-list-bulleted-square"
+                size={props.size || 24}
+                color={props.color || colors.FOREST_GREEN}
+              />
+            ) : (
+              <MaterialCommunityIcons
+                name="format-list-checkbox"
                 size={props.size || 24}
                 color={props.color || colors.FOREST_GREEN}
               />
@@ -67,12 +91,12 @@ export const BottomStackNav = function () {
         name="Sell"
         component={SignUpScreen}
         options={{
-        //  tabBarActiveTintColor: colors.FOREST_GREEN,
-        //  headerShown: true,
-        headerStyle: {
-          height: 30, // Specify the height of your custom header
-        },  
-        tabBarIcon: (props: any) => {
+          //  tabBarActiveTintColor: colors.FOREST_GREEN,
+          //  headerShown: true,
+          headerStyle: {
+            height: 30, // Specify the height of your custom header
+          },
+          tabBarIcon: (props: any) => {
             return (
               <Entypo
                 name="squared-plus"
@@ -87,15 +111,21 @@ export const BottomStackNav = function () {
         name="Messages"
         component={LoginScreen}
         options={{
-        //  headerShown: true,
-        //  tabBarActiveTintColor: colors.FOREST_GREEN,
-        headerStyle: {
-          height: 30, // Specify the height of your custom header
-        },  
-        tabBarIcon: (props: any) => {
-            return (
-              <Feather
-                name="message-square"
+          //  headerShown: true,
+          //  tabBarActiveTintColor: colors.FOREST_GREEN,
+          headerStyle: {
+            height: 30, // Specify the height of your custom header
+          },
+          tabBarIcon: (props: any) => {
+            return props.focused ? (
+              <MaterialCommunityIcons
+                name="message"
+                size={props.size || 24}
+                color={props.color || colors.FOREST_GREEN}
+              />
+            ) : (
+              <MaterialCommunityIcons
+                name="message-outline"
                 size={props.size || 24}
                 color={props.color || colors.FOREST_GREEN}
               />
@@ -104,24 +134,36 @@ export const BottomStackNav = function () {
         }}
       />
       <Tab.Screen
-        name="More"
-        component={MoreScreen}
-        options={{
-       //   headerShown: true,
-        //  tabBarActiveTintColor: colors.FOREST_GREEN,
-        headerStyle: {
-          height: 30, // Specify the height of your custom header
-        },
+        name="Settings"
+        //children={<settingsScreen props={'so'} />}
+        component={SettingsScreen}
+        // options={({ route }) => ({
+        //   title: route.params.name
+        // })}
+        options={({ route }) => ({
+          headerTitle: "",
+          // headerShown: (props: boolean) => <LogoTitle {...props} />,
+          //  tabBarActiveTintColor: colors.FOREST_GREEN,
+          //headerShown: (route.params) ? (route.params): false,
+          headerStyle: {
+            height: 30, // Specify the height of your custom header
+          },
           tabBarIcon: (props: any) => {
-            return (
-              <Feather
-                name="more-horizontal"
+            return props.focused ? (
+              <MaterialCommunityIcons
+                name="cog"
+                size={props.size || 24}
+                color={props.color || colors.FOREST_GREEN}
+              />
+            ) : (
+              <MaterialCommunityIcons
+                name="cog-outline"
                 size={props.size || 24}
                 color={props.color || colors.FOREST_GREEN}
               />
             );
           },
-        }}
+        })}
       />
     </Tab.Navigator>
   );
