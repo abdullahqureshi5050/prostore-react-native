@@ -6,6 +6,9 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+// Path 
+// Login > select your created "WEB" Project > Project Overview > Project Settings > General > Your App 
 const firebaseConfig = {
   apiKey: "AIzaSyC7KRW8IvW-_YmQrmxlTS8g5oyHPJsXkEk",
   authDomain: "prostorepk-21db3.firebaseapp.com",

@@ -1,21 +1,21 @@
-import React from 'react';
+import React from "react";
 import {
-  View,
   KeyboardAvoidingView,
-  TextInput,
   StyleSheet,
-  Text,
   Platform,
   TouchableWithoutFeedback,
-  Button,
   Keyboard,
-} from 'react-native';
+} from "react-native";
 
+/* --- This component is used to address & avoid 
+   Keyboard covering screen issue while typing.
+*/
 export const KeyboardAvoidingC = (props: any) => {
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}>
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         {props.component}
       </TouchableWithoutFeedback>
@@ -26,5 +26,5 @@ export const KeyboardAvoidingC = (props: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  }
+  },
 });

@@ -8,6 +8,8 @@ type props = {
   color: string
 } 
 
+// a horizontal stright line divider
+
 export const Divider = (props: props)=>{
     return (
         <View

@@ -13,6 +13,9 @@ import { FirebaseRecaptchaVerifierModal, FirebaseRecaptchaBanner } from 'expo-fi
 import { initializeApp, getApp } from 'firebase/app';
 import { getAuth, PhoneAuthProvider, signInWithCredential } from 'firebase/auth';
 
+// --- Expo Firebase code
+
+
 // Initialize Firebase JS SDK >=9.x.x
 // https://firebase.google.com/docs/web/setup
 try {
@@ -25,6 +28,8 @@ try {
   //   appId: "1:434194598621:web:f3c2bc2ad6a37811cbe934",
   //   measurementId: "G-CQP85NC5VK"
   // });
+
+  // include FirebaseConfig function 
   FirebaseConfig();
 } catch (err) {
   // ignore app already initialized error in snack
