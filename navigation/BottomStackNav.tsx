@@ -21,7 +21,6 @@ import { colors } from "../components/Color";
 const Tab = createBottomTabNavigator();
 
 export const BottomStackNav = function () {
-
   return (
     <Tab.Navigator
       screenOptions={{
@@ -96,16 +95,81 @@ export const BottomStackNav = function () {
           headerStyle: {
             height: 30, // Specify the height of your custom header
           },
+          //tabBarShowLabel: false,
+          // tabBarShowLabel: false,
+          //title: undefined,
+          // tabBarLabel: (props) => {
+          //   //position='beside-icon';
+          //   //focused= false;
+          //   //props.color='white';
+          // },
+          tabBarIconStyle: {
+            backgroundColor: "blue",
+          },
+          //hide tabBarLabel
+          tabBarLabelStyle: {
+            //with-height set to zero to hide label
+            width: 0,
+            height: 0,
+          },
           tabBarIcon: (props: any) => {
-            return (
-              <Entypo
-                name="squared-plus"
-                size={props.size || 24}
-                color={props.color || colors.FOREST_GREEN}
-              />
+            return  props.focused ? (
+              <View
+                style={{
+                  // width: 30,
+                  // height: 30,
+                  // justifyContent: 'center',
+                  // alignContent: 'center',
+                  // alignSelf: 'center',
+                  borderWidth: 0.5,
+                  borderRadius: 2,
+                  //opacity: 0.2,
+                  //borderWidth: "rgba(255, 0, 0, .5)",
+                  borderColor: colors.BLACK,
+                  backgroundColor: "white",
+                  elevation: 12,
+                  //shadowOpacity: 1,
+                  shadowColor: colors.BLACK,
+                  alignItems: "baseline",
+                }}
+              >
+                <MaterialCommunityIcons
+                  //name="plus"
+                  name="plus"
+                  size={props.size || 24}
+                  color={props.color || colors.FOREST_GREEN}
+                />
+              </View>
+            ): (
+              <View
+                style={{
+                  // width: 30,
+                  // height: 30,
+                  // justifyContent: 'center',
+                  // alignContent: 'center',
+                  // alignSelf: 'center',
+                  borderRadius: 2,
+                  borderWidth: 0.5,
+                  //opacity: 0.2,
+                  //borderWidth: "rgba(255, 0, 0, .5)",
+                  borderColor: colors.FOREST_GREEN,
+                  backgroundColor: "white",
+                  elevation: 12,
+                  //shadowOpacity: 1,
+                  shadowColor: "green",
+                  alignItems: "baseline",
+                }}
+              >
+                <MaterialCommunityIcons
+                  //name="plus"
+                  name="plus"
+                  size={props.size || 24}
+                  color={props.color || colors.FOREST_GREEN}
+                />
+              </View>
             );
           },
-        }}
+                  }}
       />
       <Tab.Screen
         name="Messages"

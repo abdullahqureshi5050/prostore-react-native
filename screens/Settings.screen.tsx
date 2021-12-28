@@ -28,7 +28,7 @@ export const SettingsScreen = ({ navigation }: any) => {
     //   }`
     // );
 
-    if (!res.error && res.contentOffset_Y) {
+    if (!res.error && (res.contentOffset_Y || res.contentOffset_Y==0)) {
       // if content scrolling on Y-axis is >= component height from top of the screen
       if (res.contentOffset_Y >= TextHeightState) {
         setsettingsScreenShownState(true);
@@ -39,7 +39,8 @@ export const SettingsScreen = ({ navigation }: any) => {
         setsettingsScreenShownState(false)
         navigation.setOptions({headerTitle : '' })
       }
-    } else console.log('err', res.error);
+    } else if(res.error) 
+      console.log('err', res.error);
   };
   return (
     <ScrollView onScroll={onScrollHandler} style={styles.root}>
