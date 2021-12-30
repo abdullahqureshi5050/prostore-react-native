@@ -11,16 +11,17 @@ import { ItemCardSmall } from "./ItemCardSmall";
 import { FONTSIZE } from "../static/FontSize";
 
 type cardProps = {
-  // {
-  //   id: string
-  //   width: number
-  //   height: number
-  //   footer: string
-  //   footerStyles: object | any
-  //   source: object | any
-  // },
-  data: Array<any>
+  data: {
+    id: number | string | any,
+    width?: number | string,
+    height?: number | string,
+    footer?: string,
+    footerStyles?: object | any,
+    source: {image?: any, uri?: string }
+  }[],
+  //data: Array<any>
   headerTitle?: string | undefined,
+  headerShown?: boolean
   styles?: any | undefined,
 };
 
@@ -36,13 +37,19 @@ type cardHeaderProps = {
     headerTitleStyle?: object | undefined,
     headerTitle: string | undefined,
     headerRightButtonText?: object | undefined,
+    headerShown?: boolean,
+    headerContainerStyle? : any
 }
 const Header = (headerProps: cardHeaderProps)=>{
+  let showHeader= {};
+ if (headerProps.headerShown){
+ showHeader = {
+    width: 0,
+    height: 0
+  }
+ }
     return (
-        <View style={{
-            flexDirection: 'row', 
-            justifyContent: 'space-between',
-            }}>
+        <View style={{...styles.headerContainterStyle, ...showHeader}}>
             <View style={{
                padding: 5,
                alignSelf: 'center',
@@ -64,15 +71,19 @@ const Header = (headerProps: cardHeaderProps)=>{
 export function ItemCardHorizontalScrollView(props: cardProps) {
   let flatListStyles = props.styles || "";
   const [headerTitleState, setHeaderTitleState] = useState('Header Title')
+  const [headerShownState, setHeaderShownState] = useState(true);
   useEffect(() => {
-    props.headerTitle && setHeaderTitleState(props.headerTitle)
+    props.headerTitle && setHeaderTitleState(props.headerTitle);
+    if(props.headerShown){
+      setHeaderShownState(props.headerShown);
+    }
     // return () => {
       
     // }
-  }, [props.headerTitle])
+  }, [props.headerTitle, props.headerShown])
   return (
     <View style={styles.root}>
-      <Header headerTitle={headerTitleState}/>
+      <Header headerTitle={headerTitleState} headerShown={props.headerShown} />
       <FlatList
         style={{ flex: 1, ...flatListStyles }}
         showsHorizontalScrollIndicator={false}
@@ -81,7 +92,7 @@ export function ItemCardHorizontalScrollView(props: cardProps) {
         renderItem={(props) => {
           return renderItemsHandler(props, flatListStyles);
         }}
-        keyExtractor={(item) => item.id}
+        keyExtractor={({id}) => id}
         //numColumns={2}
         //extraData={selectedId}
       />
@@ -97,6 +108,7 @@ const styles = StyleSheet.create({
     padding: 10,
     //borderRadius: 75
   },
+
   headerText: {
     fontSize: FONTSIZE.SM
   },
@@ -105,6 +117,11 @@ const styles = StyleSheet.create({
     fontSize: FONTSIZE.SM,
     color: 'green'
     },
+
+    headerContainterStyle: {
+      flexDirection: 'row', 
+      justifyContent: 'space-between',
+      },
   
   card: {
     //width: 300,

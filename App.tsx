@@ -19,7 +19,7 @@ import { AnimatedC } from "./components/temp/Animation";
 import { KeyboardAvoidingC } from "./components/AvoidKeyboardView";
 //import { HomeScreen } from "./screens/Home.screen";
 import { Nav } from "./navigation/Nav";
-import { ExpoFirebase } from './auth/Firebase';
+// import { ExpoFirebase } from './auth/Firebase';
 export default function App() {
 
   return (
@@ -31,10 +31,10 @@ export default function App() {
           translucent={false}
         />
         {/* <CardScreen /> */}
-        {/* <TempScreen/> */}
+        <TempScreen/>
         {/* <KeyboardAvoidingC component={<TempScreen />} /> */}
         {/* <AnimatedC/> */}
-        <ExpoFirebase/>
+        {/* <ExpoFirebase/> */}
         {/* <KeyboardAvoidingC component={<Nav />} /> */}
       </View>
     </SafeAreaView>
@@ -50,6 +50,6 @@ const styles = StyleSheet.create({
   rootViewContainer: {
     flex: 1,
     //height: '100%',
-    //backgroundColor: "lightgray",
+    //backgroundColor: "gray",
   },
 });

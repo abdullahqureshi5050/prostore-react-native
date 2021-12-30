@@ -12,6 +12,7 @@ type textInputProps = {
 }
 
 export const TextInputC = (props: textInputProps) => {
+  
   const [textState, setTextState] = useState("");
 
   return (

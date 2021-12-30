@@ -26,6 +26,14 @@ export const BottomStackNav = function () {
       screenOptions={{
         tabBarInactiveTintColor: colors.FOREST_GREEN,
         tabBarActiveTintColor: colors.BLACK,
+        headerRight: (props)=>{
+          return <MaterialCommunityIcons name="bell-outline" size={24} color="black" />
+        },
+
+        headerLeft: (props)=>{
+          return <MaterialCommunityIcons name="keyboard-backspace" size={24} color="black" />
+        }  
+
       }}
     >
       <Tab.Screen
@@ -38,8 +46,6 @@ export const BottomStackNav = function () {
           headerStyle: {
             height: 30, // Specify the height of your custom header
           },
-          headerRight: () => <Text>R</Text>,
-          headerLeft: () => <Text>L</Text>,
           //headerTitleStyle: {width: '100%', alignItems: 'flex-end', backgroundColor: 'red', fontSize: 20},
           //headerTitleAllowFontScaling: true,
           //headerRightContainerStyle: { maxWidth: 30, alignItems: 'flex-end' , backgroundColor: 'lightblue'},

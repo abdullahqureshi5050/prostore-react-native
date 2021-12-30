@@ -56,8 +56,7 @@ export const ExpoFirebase = ()=> {
   const attemptInvisibleVerification = false;
 
   return (
-    <View style={{ flex:1, padding: 20, marginTop: 50 }}>
-      <Button title='dadasd' onPress={()=>{}}></Button>
+    <View style={{ padding: 20, marginTop: 50 }}>
       <FirebaseRecaptchaVerifierModal
         ref={recaptchaVerifier as any}
         firebaseConfig={app.options}
@@ -66,7 +65,7 @@ export const ExpoFirebase = ()=> {
       <Text style={{ marginTop: 20 }}>Enter phone number</Text>
       <TextInput
         style={{ marginVertical: 10, fontSize: 17 }}
-        placeholder="+1 999 999 9999"
+        placeholder="+92 3XX 1234567"
         autoFocus
         autoCompleteType="tel"
         keyboardType="phone-pad"
