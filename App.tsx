@@ -13,12 +13,13 @@ import {
 import { LoginScreen } from "./screens/Login.screen";
 import { colors } from "./components/Color";
 //import { SignUpScreen } from "./screens/Signup.screen";
-import { TempScreen } from "./screens/Temp.screen";
+import { ProductScreen } from "./screens/Product.screen";
 import { CardScreen } from "./screens/Card.screen";
 import { AnimatedC } from "./components/temp/Animation";
 import { KeyboardAvoidingC } from "./components/AvoidKeyboardView";
 //import { HomeScreen } from "./screens/Home.screen";
 import { Nav } from "./navigation/Nav";
+import  { SnapCarousel }  from "./components/SnapCarousel";
 // import { ExpoFirebase } from './auth/Firebase';
 export default function App() {
 
@@ -31,7 +32,7 @@ export default function App() {
           translucent={false}
         />
         {/* <CardScreen /> */}
-        <TempScreen/>
+        <ProductScreen/>
         {/* <KeyboardAvoidingC component={<TempScreen />} /> */}
         {/* <AnimatedC/> */}
         {/* <ExpoFirebase/> */}
