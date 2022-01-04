@@ -32,11 +32,11 @@ export default function App() {
           translucent={false}
         />
         {/* <CardScreen /> */}
-        <ProductScreen/>
+        {/* <ProductScreen/> */}
         {/* <KeyboardAvoidingC component={<TempScreen />} /> */}
         {/* <AnimatedC/> */}
         {/* <ExpoFirebase/> */}
-        {/* <KeyboardAvoidingC component={<Nav />} /> */}
+        <KeyboardAvoidingC component={<Nav />} />
       </View>
     </SafeAreaView>
   );

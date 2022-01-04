@@ -90,12 +90,12 @@ const data = [
 export const CardScreen = () => {
   return (
     <ScrollView style={{ flex: 1 }}>
-      <Text>{`Device Width ${Dimensions.get("window").width}`}</Text>
+      {/* <Text>{`Device Width ${Dimensions.get("window").width}`}</Text>
       <Text>{`Device Height=${Dimensions.get("window").height}`}</Text>
       <Text>{`getFontScale()=${PixelRatio.getFontScale()}`}</Text>
       <Text>{`DiSPLAY scale=${PixelRatio.get()}`}</Text>
       <Text>{`Actual Width scale=${PixelRatio.roundToNearestPixel(Dimensions.get("window").width)*Dimensions.get("window").scale}`}</Text>
-      <Text>{`Layout=${PixelRatio.getPixelSizeForLayoutSize(Dimensions.get('window').width)}`}</Text>
+      <Text>{`Layout=${PixelRatio.getPixelSizeForLayoutSize(Dimensions.get('window').width)}`}</Text> */}
       
       <ItemCardHorizontalScrollView
         headerTitle={"Header T1"}
@@ -103,7 +103,7 @@ export const CardScreen = () => {
       />
       {/* <UploadImage/> */}
       {/* <ImagePickerComponent/> */}
-      <MediaCard
+      {/* <MediaCard
         title={"Battlefield V"}
         imageStyle={{ width: 120, height: 180 }}
         price={50000}
@@ -112,7 +112,7 @@ export const CardScreen = () => {
           image: require("../assets/images/igdb/UNCHARTERED.jpg"),
         }}
         source={{ image: require("../assets/images/igdb/BF5.jpg") }}
-      />
+      /> */}
       {/* <UploadImage/>  */}
       {/* <ItemCardSmall 
                 width={250}
