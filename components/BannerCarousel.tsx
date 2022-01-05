@@ -10,7 +10,7 @@ type BannerCarouselProps = {
     images: any[]
     imageHeight?: any,
     imageWidth?: any,
-    style?: StyleProp<ViewStyle>
+    style?: ViewStyle
 }
 
 //export default class App extends React.Component  {

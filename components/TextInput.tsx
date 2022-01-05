@@ -1,9 +1,11 @@
 import React, { ReactElement, useState } from "react";
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleProp, StyleSheet, TextInput, TextStyle, View, ViewStyle } from "react-native";
 import PropTypes from 'prop-types';
 
 type textInputProps = {
-  style?: object | any,
+  textInputContainerStyle?:  ViewStyle,
+  textInputStyle?: TextStyle,
+  iconStyle?: ViewStyle,
   onChangeText?: Function | any,
   placeholder?: string | undefined,
   value?: string,
@@ -16,11 +18,14 @@ export const TextInputC = (props: textInputProps) => {
   const [textState, setTextState] = useState("");
 
   return (
-    <View style={styles.textInputContainer}>
-      <View style={styles.iconView}>{props.icon}</View>
-      <View style={styles.textInputView}>
+    <View style={{...styles.textInputContainer, ...props.textInputContainerStyle }}>
+      <View style={{...styles.iconView, ...props.iconStyle}}>{props.icon}</View>
+      <View style={{...styles.textInputView, ...{
+    elevation: 15,
+    //overflow: "hidden",
+    }}}>
         <TextInput
-          style={styles.textInput}
+          style={{...styles.textInput, ...props.textInputStyle }}
           onChangeText={setTextState}
           value={textState}
           placeholder={props.placeholder || ""}
@@ -37,7 +42,7 @@ const styles = StyleSheet.create({
     marginVertical: 12,
     marginRight: 12,
     //padding: 10,
-    fontSize: 20,
+    fontSize: 16,
   },
 
   textInputContainer: {

@@ -6,6 +6,11 @@ import {
   FlatList,
   TouchableOpacity,
   ImageBackground,
+  ViewStyle,
+  StyleProp,
+  RegisteredStyle,
+  RecursiveArray,
+  Falsy,
 } from "react-native";
 import { ItemCardSmall } from "./ItemCardSmall";
 import { FONTSIZE } from "../static/FontSize";
@@ -22,7 +27,7 @@ type cardProps = {
   //data: Array<any>
   headerTitle?: string | undefined,
   headerShown?: boolean
-  styles?: any | undefined,
+  styles?: ViewStyle,
 };
 
 const renderItemsHandler = (props: any, flatListStyles: any) => {
@@ -69,21 +74,19 @@ const Header = (headerProps: cardHeaderProps)=>{
 }
 
 export function ItemCardHorizontalScrollView(props: cardProps) {
-  let flatListStyles = props.styles || "";
+  let flatListStyles = props.styles;
   const [headerTitleState, setHeaderTitleState] = useState('Header Title')
   const [headerShownState, setHeaderShownState] = useState(true);
   useEffect(() => {
     props.headerTitle && setHeaderTitleState(props.headerTitle);
-    if(props.headerShown){
-      setHeaderShownState(props.headerShown);
-    }
-    // return () => {
+    props.headerShown==false? setHeaderShownState(props.headerShown): setHeaderShownState(true);
+    return () => {
       
-    // }
+    }
   }, [props.headerTitle, props.headerShown])
   return (
     <View style={styles.root}>
-      <Header headerTitle={headerTitleState} headerShown={props.headerShown} />
+      {headerShownState && <Header headerTitle={headerTitleState} /> }
       <FlatList
         style={{ flex: 1, ...flatListStyles }}
         showsHorizontalScrollIndicator={false}
@@ -103,7 +106,7 @@ export function ItemCardHorizontalScrollView(props: cardProps) {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: "lightgrey",
+    //backgroundColor: "lightgrey",
     //margin: 5
     padding: 10,
     //borderRadius: 75

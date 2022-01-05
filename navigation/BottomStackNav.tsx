@@ -27,11 +27,13 @@ export const BottomStackNav = function () {
         tabBarInactiveTintColor: colors.FOREST_GREEN,
         tabBarActiveTintColor: colors.BLACK,
         headerRight: (props)=>{
-          return <MaterialCommunityIcons name="bell-outline" size={24} color="black" />
+          return <MaterialCommunityIcons name="bell-outline" size={24} color={colors.FOREST_GREEN} />
         },
-
+        headerTitle: '',
+        // default undefined
+        headerLeftLabelVisible: false,
         headerLeft: (props)=>{
-          return <MaterialCommunityIcons name="keyboard-backspace" size={24} color="black" />
+         return props.labelVisible && <MaterialCommunityIcons name="keyboard-backspace" size={24} color={props.tintColor || colors.FOREST_GREEN} />
         }  
 
       }}

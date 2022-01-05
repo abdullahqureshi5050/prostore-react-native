@@ -30,7 +30,7 @@ export const ButtonC = (props: buttonProps) => {
       activeOpacity={0.9}
       onPress={() => {
         try {
-          Alert.alert("Alert!", "signup button clicked");
+          Alert.alert("Alert!", " button clicked");
         } catch (error: any) {
           Alert.alert("Alert!", error);
         }
@@ -50,17 +50,24 @@ export const ButtonC = (props: buttonProps) => {
 
 const styles = StyleSheet.create({
   textView: {
-    padding: 5,
+    backgroundColor: colors.DARK_GRAY,
+    margin: 5,
+    borderRadius: 5,
+    overflow: 'hidden',
+    //padding: 10
+    // overflow: 'hidden',
+    //height: 40, width: 40, flex: 1, backgroundColor: 'red'
+    //padding: 5,
+    // height: 40,
+    // width: 40
   },
 
   text: {
-    backgroundColor: colors.FOREST_GREEN,
     fontSize: 30,
     //justifyContent: 'center',
     textAlign: "center",
-    borderRadius: 10,
     color: colors.WHITE,
-    paddingVertical: 10,
+    padding: 5,
   },
 
 });
