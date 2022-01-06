@@ -201,8 +201,7 @@ const data = [
 
 export const HomeScreen = () => {
   return (
-    <ScrollView style={styles.rootContainer}>
-
+    <View style={styles.rootContainer}>
       {/* Map-search */}
       <TextInputC
         textInputContainerStyle={{
@@ -293,12 +292,15 @@ export const HomeScreen = () => {
         ></ButtonC>
       </View>
 
+    
+    <ScrollView style={{marginBottom: 90}} >
+
       <BannerCarousel
         imageHeight={168}
         style={{ borderRadius: 5, margin: 10 }}
         images={images}
       />
-
+      
       <View
         style={{
           padding: 5,
@@ -319,11 +321,13 @@ export const HomeScreen = () => {
         />
       </ScrollView>
     </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   rootContainer: {
+    //backgroundColor: colors.WHITE
     //  flex: 1
   },
   searchContainer: {
