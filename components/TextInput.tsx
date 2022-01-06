@@ -11,6 +11,7 @@ type textInputProps = {
   value?: string,
   keyboardType?: string | any,
   icon?: PropTypes.ReactElementLike,
+  numberOfLines?: number | undefined
 }
 
 export const TextInputC = (props: textInputProps) => {
@@ -28,6 +29,7 @@ export const TextInputC = (props: textInputProps) => {
           style={{...styles.textInput, ...props.textInputStyle }}
           onChangeText={setTextState}
           value={textState}
+          numberOfLines={props.numberOfLines || 1}
           placeholder={props.placeholder || ""}
           keyboardType={props.keyboardType || "default"}
         />

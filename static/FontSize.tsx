@@ -2,6 +2,7 @@ export const FONTSIZE = {
     XXXSM: 8,
     XXSM: 10,
     XSM: 12,
+    11: 11,
     SM: 14,
     
     SMD: 15,

@@ -5,12 +5,7 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
-  ImageBackground,
   ViewStyle,
-  StyleProp,
-  RegisteredStyle,
-  RecursiveArray,
-  Falsy,
 } from "react-native";
 import { ItemCardSmall } from "./ItemCardSmall";
 import { FONTSIZE } from "../static/FontSize";
@@ -20,20 +15,25 @@ type cardProps = {
     id: number | string | any,
     width?: number | string,
     height?: number | string,
+    // footer is deprecated, use headerTitle instead
     footer?: string,
+    // footerStyles is deprecated, use imageTitleContainerStyle instead
     footerStyles?: object | any,
-    source: {image?: any, uri?: string }
+    imageTitleContainerStyle?: ViewStyle | any,
+    source: {image?: any, uri?: string },
+    imageTitle?: any,
+    imageTitleNumberOfLines?: number | undefined,
   }[],
   //data: Array<any>
   headerTitle?: string | undefined,
-  headerShown?: boolean
+  headerShown?: boolean,
   styles?: ViewStyle,
 };
 
 const renderItemsHandler = (props: any, flatListStyles: any) => {
   return (
     <View style={styles.card}>
-      <ItemCardSmall {...props.item} />
+      <ItemCardSmall {...props.item } />
     </View>
   );
 };

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import { 
     StyleSheet,
     View,
@@ -6,15 +6,16 @@ import {
     ImageSourcePropType,
     Text,
     TouchableOpacity,
-    useWindowDimensions
+    useWindowDimensions,
+    ViewStyle
  } from "react-native";
 import { FONTSIZE } from "../static/FontSize";
 import { Ionicons } from '@expo/vector-icons';
  type cardProps = {
    headerVisible?: boolean,
-   imageTitleNumberOfLines?: number, 
+   imageTitleNumberOfLines?: number | undefined, 
    cardStyles?: any,
-   imageTitleContainerStyle?: any,
+   imageTitleContainerStyle?: ViewStyle,
    imageTitleTextStyle?: any,
    priceTextStyle?: any,
    priceContainerStyle?: any,
@@ -90,7 +91,14 @@ const Header = (headerProps: cardHeaderProps)=>{
 }
  
  export const ItemCardSmall = (props: cardProps)=>{
-      
+  // const imageTitleNumberOfLines  = props.imageTitleNumberOfLines;
+  //console.log(imageTitleNumberOfLines) 
+   // const onTextLayoutHandler = useCallback(e => {
+   //   if(e.nativeEvent.lines.length<(imageTitleNumberOfLines? imageTitleNumberOfLines : 1) && e.nativeEvent.lines.length>=1 ){
+   //      console.log(`${imageTitleNumberOfLines},'sad'`)
+   //   }
+   // }, []);
+   
      return (
         <View style={{...styles.root, 
         ...{

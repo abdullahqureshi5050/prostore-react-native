@@ -27,7 +27,7 @@ export const colors = {
 //   },
 
   // general settings 
-  FOREST_GREEN: "forestgreen",
+  FOREST_GREEN: "#26828B",//"forestgreen",
   BLACK: "black",
   DIM_GRAY: "dimgray",
   WHITE: "white",
