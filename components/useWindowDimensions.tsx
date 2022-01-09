@@ -46,4 +46,4 @@ fontSize = {
     // }
 }
 
-export const FONTSIZE = WindowDimensions;
+export const FONTSIZE = fontSize;
