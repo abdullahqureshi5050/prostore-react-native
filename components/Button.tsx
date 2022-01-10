@@ -7,6 +7,7 @@ import {
   Alert,
   StyleProp,
   ViewStyle,
+  TextStyle,
 } from "react-native";
 import { colors } from "./Color";
 
@@ -14,8 +15,8 @@ type buttonProps = {
   title: any;
   titleShown?: boolean;
   textColor?: any;
-  textStyle?: ViewStyle;
-  textContainerStyle?: any;
+  textStyle?: TextStyle;
+  textContainerStyle?: ViewStyle;
 };
 
 export const ButtonC = (props: buttonProps) => {

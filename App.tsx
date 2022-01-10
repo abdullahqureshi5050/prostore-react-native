@@ -15,6 +15,7 @@ import { colors } from "./components/Color";
 //import { SignUpScreen } from "./screens/Signup.screen";
 import { ProductScreen } from "./screens/Product.screen";
 import { CardScreen } from "./screens/Card.screen";
+import { TempScreen } from "./screens/Temp.screen";
 import { AnimatedC } from "./components/temp/Animation";
 import { KeyboardAvoidingC } from "./components/AvoidKeyboardView";
 //import { HomeScreen } from "./screens/Home.screen";

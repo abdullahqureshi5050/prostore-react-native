@@ -11,6 +11,8 @@ import {
  } from "react-native";
 import { FONTSIZE } from "../static/FontSize";
 import { Ionicons } from '@expo/vector-icons';
+import { colors } from "./Color";
+import { ShadowC } from "./Shadow";
  type cardProps = {
    headerVisible?: boolean,
    imageTitleNumberOfLines?: number | undefined, 
@@ -107,6 +109,7 @@ const Header = (headerProps: cardHeaderProps)=>{
            //height: props.height
          }
         }}>
+        
            <View style={{ width: props.width}} >
             {/* optional Header */}
             {props.headerVisible==true && <Header headerLeftImageSource={props.headerLeftImageSource} /> }
@@ -133,16 +136,20 @@ const Header = (headerProps: cardHeaderProps)=>{
 
  const styles = StyleSheet.create({
     root: {
-      backgroundColor: 'white',
+     backgroundColor: colors.WHITE,
+      //border inside image  
       //padding: 10,
       borderRadius: 5,
+      elevation: 5,
       margin: 5,
       overflow: 'hidden',
       //flex: 1,
     },
+
     headerText: {
       fontSize: FONTSIZE?.SM
     },
+
     headerRight: {
       textDecorationLine: 'underline',
       fontSize: FONTSIZE?.SM,

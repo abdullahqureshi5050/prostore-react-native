@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { ItemCardSmall } from "./ItemCardSmall";
 import { FONTSIZE } from "../static/FontSize";
+import { ShadowC } from "./Shadow";
 
 type cardProps = {
   data: {
@@ -54,6 +55,7 @@ const Header = (headerProps: cardHeaderProps)=>{
   }
  }
     return (
+      <ShadowC>
         <View style={{...styles.headerContainterStyle, ...showHeader}}>
             <View style={{
                padding: 5,
@@ -70,6 +72,7 @@ const Header = (headerProps: cardHeaderProps)=>{
             </View>
             </TouchableOpacity>
         </View>
+        </ShadowC>
     )
 }
 

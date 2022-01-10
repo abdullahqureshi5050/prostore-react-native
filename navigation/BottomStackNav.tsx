@@ -180,7 +180,7 @@ export const BottomStackNav = function () {
                   }}
       />
       <Tab.Screen
-        name="Messages"
+        name="Orders"
         component={LoginScreen}
         options={{
           //  headerShown: true,
@@ -191,13 +191,13 @@ export const BottomStackNav = function () {
           tabBarIcon: (props: any) => {
             return props.focused ? (
               <MaterialCommunityIcons
-                name="message"
+                name="text-box-check"
                 size={props.size || 24}
                 color={props.color || colors.FOREST_GREEN}
               />
             ) : (
               <MaterialCommunityIcons
-                name="message-outline"
+                name="text-box-check-outline"
                 size={props.size || 24}
                 color={props.color || colors.FOREST_GREEN}
               />
@@ -223,13 +223,13 @@ export const BottomStackNav = function () {
           tabBarIcon: (props: any) => {
             return props.focused ? (
               <MaterialCommunityIcons
-                name="cog"
+                name="account"
                 size={props.size || 24}
                 color={props.color || colors.FOREST_GREEN}
               />
             ) : (
               <MaterialCommunityIcons
-                name="cog-outline"
+                name="account-outline"
                 size={props.size || 24}
                 color={props.color || colors.FOREST_GREEN}
               />
