@@ -113,11 +113,11 @@ const styles = StyleSheet.create({
   },
 
   headerText: {
-    fontSize: FONTSIZE.SM
+    fontSize: FONTSIZE?.SM
   },
   headerRight: {
     textDecorationLine: 'underline',
-    fontSize: FONTSIZE.SM,
+    fontSize: FONTSIZE?.SM,
     color: 'green'
     },
 

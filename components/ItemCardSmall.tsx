@@ -134,18 +134,18 @@ const Header = (headerProps: cardHeaderProps)=>{
  const styles = StyleSheet.create({
     root: {
       backgroundColor: 'white',
-      padding: 10,
+      //padding: 10,
       borderRadius: 5,
       margin: 5,
       overflow: 'hidden',
       //flex: 1,
     },
     headerText: {
-      fontSize: FONTSIZE.SM
+      fontSize: FONTSIZE?.SM
     },
     headerRight: {
       textDecorationLine: 'underline',
-      fontSize: FONTSIZE.SM,
+      fontSize: FONTSIZE?.SM,
       color: 'green'
       },
       

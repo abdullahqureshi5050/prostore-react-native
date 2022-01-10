@@ -2,6 +2,7 @@ import React from 'react';
 // updated version 
 import Carousel from 'react-native-banner-carousel-updated';
 import { StyleSheet, Image, View, Dimensions, StyleProp, ViewStyle } from 'react-native';
+import { colors } from './Color';
 
 const BannerWidth = Dimensions.get('window').width;
 const BannerHeight = 260;
@@ -31,7 +32,7 @@ export const BannerCarousel = (props: BannerCarouselProps)=> {
                 <Carousel
                     // showsPageIndicator={false}
                     activePageIndicatorStyle={{backgroundColor: 'white' }}
-                    pageIndicatorStyle={{backgroundColor: 'green'}}
+                    pageIndicatorStyle={{backgroundColor: colors.FOREST_GREEN}}
                     autoplay
                     autoplayTimeout={5000}
                     loop

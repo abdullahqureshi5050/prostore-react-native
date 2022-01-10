@@ -34,7 +34,7 @@ const data = [
       textAlign: "center",
       // android-only-prop
       textAlignVertical: 'center',
-      fontSize: FONTSIZE[11],
+      fontSize: FONTSIZE?.[11],
       flex:1,
       height: '100%'
     },
@@ -59,7 +59,7 @@ const data = [
       textAlign: "center",
       // android-only-prop
       textAlignVertical: 'center',
-      fontSize: FONTSIZE[11],
+      fontSize: FONTSIZE?.[11],
       height: '100%'
     },
     footerStyles: { justifyContent: "center", alignItems: "center" },
@@ -83,7 +83,7 @@ const data = [
       textAlign: "center",
       // android-only-prop
       textAlignVertical: 'center',
-      fontSize: FONTSIZE[11],
+      fontSize: FONTSIZE?.[11],
       flex:1,
       height: '100%'
     },
@@ -107,7 +107,7 @@ const data = [
       textAlign: "center",
       // android-only-prop
       textAlignVertical: 'center',
-      fontSize: FONTSIZE[11],
+      fontSize: FONTSIZE?.[11],
       flex:1,
       height: '100%'
     },
@@ -133,7 +133,7 @@ const data = [
       textAlign: "center",
       // android-only-prop
       textAlignVertical: 'center',
-      fontSize: FONTSIZE[11],
+      fontSize: FONTSIZE?.[11],
       flex:1,
       height: '100%'
     },
@@ -159,7 +159,7 @@ const data = [
       textAlign: "center",
       // android-only-prop
       textAlignVertical: 'center',
-      fontSize: FONTSIZE[11],
+      fontSize: FONTSIZE?.[11],
       flex:1,
       height: '100%'
     },
@@ -215,7 +215,7 @@ export const HomeScreen = () => {
           //margin: 0,
           padding: 0,
           color: colors.FOREST_GREEN,
-          fontSize: FONTSIZE.SM
+          fontSize: FONTSIZE?.SM
         }}
         icon={
           <MaterialCommunityIcons
@@ -258,7 +258,7 @@ export const HomeScreen = () => {
               flex: 1,
               marginVertical: 0,
               marginRight: 0,
-              fontSize: FONTSIZE.SM,
+              fontSize: FONTSIZE?.SM,
               color: colors.DARK_GRAY,
             }}
             placeholder="Search Items to Buy"
@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
     //alignSelf: 'stretch'
   },
   headerText: {
-    fontSize: FONTSIZE.MD,
+    fontSize: FONTSIZE?.MD,
   },
   searchTextInput: {
     //flex: 1,
