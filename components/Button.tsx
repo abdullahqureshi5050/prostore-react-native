@@ -8,15 +8,17 @@ import {
   StyleProp,
   ViewStyle,
   TextStyle,
+  GestureResponderEvent,
 } from "react-native";
 import { colors } from "./Color";
 
 type buttonProps = {
-  title: any;
-  titleShown?: boolean;
-  textColor?: any;
-  textStyle?: TextStyle;
-  textContainerStyle?: ViewStyle;
+  onPress?: any,
+  title: any
+  titleShown?: boolean
+  textColor?: any
+  textStyle?: TextStyle
+  textContainerStyle?: ViewStyle
 };
 
 export const ButtonC = (props: buttonProps) => {
@@ -29,13 +31,7 @@ export const ButtonC = (props: buttonProps) => {
   return (
     <TouchableOpacity
       activeOpacity={0.9}
-      onPress={() => {
-        try {
-          Alert.alert("Alert!", " button clicked");
-        } catch (error: any) {
-          Alert.alert("Alert!", error);
-        }
-      }}
+      onPress={ props.onPress}
     >
       <View style={{ ...styles.textView, ...props.textContainerStyle }}>
         {titleState && (
@@ -51,8 +47,7 @@ export const ButtonC = (props: buttonProps) => {
 
 const styles = StyleSheet.create({
   textView: {
-    backgroundColor: colors.DARK_GRAY,
-    margin: 5,
+    //margin: 5,
     borderRadius: 5,
     overflow: 'hidden',
     //padding: 10

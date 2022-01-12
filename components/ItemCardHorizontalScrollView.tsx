@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     flex: 1,
     //backgroundColor: "lightgrey",
     //margin: 5
-    padding: 10,
+    //padding: 10,
     //borderRadius: 75
   },
 

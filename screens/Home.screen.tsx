@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -6,6 +6,9 @@ import {
   Button,
   Dimensions,
   ScrollView,
+  Touchable,
+  TouchableOpacity,
+  Alert,
 } from "react-native";
 import { TextInputC } from "../components/TextInput";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -32,6 +35,7 @@ const data = [
       flex: 1,
       //height: '10%'
     },
+
     imageTitleTextStyle: {
       textAlign: "center",
       // android-only-prop
@@ -40,6 +44,7 @@ const data = [
       flex:1,
       height: 36
     },
+  
     footerStyles: { justifyContent: "center", alignItems: "center" },
     source: {
       image: require("../assets/images/igdb/BF5.jpg"),
@@ -172,41 +177,62 @@ const data = [
     },
     imageTitleNumberOfLines: 2,
   },
-
-  // {
-  //   id: "7",
-  //   width: 90, //200,
-  //   height: 120, //250,
-  //   imageTitle: `MORE`,
-  //   footer: "fkljsdjaervjdkldfjgjgdpovjdgjergjdljdfl",
-  //   imageTitleContainerStyle: {
-  //     justifyContent: "center",
-  //     alignItems: "center",
-  //     height: '20%'
-  //   },
-  //   // imageTitleTextStyle: {
-  //   //   textAlign: "center",
-  //   //   // android-only-prop
-  //   //   textAlignVertical: 'center',
-  //   //   fontSize: FONTSIZE[11],
-  //   //   flex:1,
-  //   //   height: '100%'
-  //   // },
-  //   footerStyles: { justifyContent: "center", alignItems: "center" },
-  //   source: {
-  //     image: require("../assets/images/More.png"),
-  //     //uri: "https://picsum.photos/200/300",
-  //   },
-  //   //imageTitleNumberOfLines: 2,
-  // },
 ];
 
-export const HomeScreen = () => {
+export const HomeScreen = (props: any) => {
+  
+  const [ItemSearchState, setItemSearchState] = useState(false)  
+
   return (
     <View style={styles.rootContainer}>
-      {/* Map-search */}
-      <TextInputC
+     
+      {/* Map-search-button */}
+      <ButtonC
+          onPress={ () => {
+            try {
+              props.navigation.navigate({ 
+                //name = "component" in stack navaigation, not screen prop "name" property.
+                name: 'Map Search', });
+            } catch (error: any) {
+              Alert.alert("Alert!", error);
+            }
+          }}
+          textContainerStyle={{
+            marginTop: 10,
+            height: 30,
+            borderRadius: 5,
+            borderColor: colors.FOREST_GREEN,
+            // backgroundColor: 'green',
+            alignItems: 'flex-start',
+            shadowColor: colors.FOREST_GREEN,
+            borderWidth: 1,
+            //borderRadius: 1,
+            // elevation: 5,
+          }}
+          title={
+            <MaterialCommunityIcons
+            name="map-marker-outline"
+            size={17}
+            color={colors.FOREST_GREEN}
+          />
+            
+          }
+          //textContainerStyle={{ backgroundColor: "red" }}
+          //titleShown={false}
+          textStyle={{
+            marginLeft: 5,
+            // padding: 0,
+            // justifyContent: 'center' , alignContent: 'center', 
+            // textAlign: 'center', alignItems: 'center',
+            //backgroundColor: 'red',
+            // alignSelf: "flex-end",
+            //padding: 10,
+          }}
+        ></ButtonC>
+      
+      {/* <TextInputC
         textInputContainerStyle={{
+          marginTop: 10,
           height: 30,
           borderRadius: 5,
           borderColor: colors.FOREST_GREEN,
@@ -217,7 +243,7 @@ export const HomeScreen = () => {
           //margin: 0,
           padding: 0,
           color: colors.FOREST_GREEN,
-          fontSize: FONTSIZE?.MD
+          fontSize: FONTSIZE?.SM
         }}
         icon={
           <MaterialCommunityIcons
@@ -226,12 +252,13 @@ export const HomeScreen = () => {
             color={colors.FOREST_GREEN}
           />
         }
-      ></TextInputC>
+      ></TextInputC> */}
+
 
       <View style={styles.searchContainer}>
         <View
           style={
-            { width: "100%", flex: 1 }
+            { width: "100%", flex: 1,  }
             //styles.searchTextInput
           }
         >
@@ -240,13 +267,16 @@ export const HomeScreen = () => {
             textInputContainerStyle={{
               borderRadius: 5,
               borderColor: colors.DIM_GRAY,
+              backgroundColor: colors.DIM_GRAY,
               height: 40,
+              marginRight: 0,
+              flex: 1
             }}
             textInputStyle={{
               flex: 1,
               marginVertical: 0,
               marginRight: 0,
-              fontSize: FONTSIZE?.LG,
+              fontSize: FONTSIZE?.SM,
               color: colors.DARK_GRAY,
             }}
             placeholder="Search Items to Buy"
@@ -254,7 +284,7 @@ export const HomeScreen = () => {
               <MaterialCommunityIcons
                 name="magnify"
                 size={24}
-                color={colors.DIM_GRAY}
+                color={colors.DARK_GRAY}
               />
             }
           ></TextInputC>
@@ -262,43 +292,59 @@ export const HomeScreen = () => {
 
         {/* Filter Icon  */}
         
+        {/* <ShadowC> */}
         <ButtonC
 
-          textContainerStyle={{justifyContent: 'center'}}
+          textContainerStyle={{
+            marginLeft: 10,
+            justifyContent: "center",
+            alignContent: "center",
+            alignItems: "center",
+            borderColor: colors.FOREST_GREEN,
+            shadowColor: colors.FOREST_GREEN,
+            borderWidth: 1,
+            //borderRadius: 1,
+            elevation: 5,
+          }}
           title={
-            <ShadowC  startColor={colors.FOREST_GREEN} finalColor={colors.FOREST_GREEN} >
             <MaterialCommunityIcons
               name="filter-outline"
               size={30}
               color={colors.FOREST_GREEN}
             />
-            </ShadowC>
+            
           }
           //textContainerStyle={{ backgroundColor: "red" }}
           //titleShown={false}
           textStyle={{
-            //padding: 2,
+            margin: 0,
+            // padding: 0,
             // justifyContent: 'center' , alignContent: 'center', 
             // textAlign: 'center', alignItems: 'center',
-            backgroundColor: "white",
+            backgroundColor: colors.WHITE,
             // alignSelf: "flex-end",
             //padding: 10,
           }}
         ></ButtonC>
+        {/* </ShadowC> */}
       </View>
 
     
-    <ScrollView style={{marginBottom: 90}} >
+    {/* <ScrollView style={{
+      // marginBottom will set scroll bottom offset beyond max range to scroll futher. 
+      marginBottom: 90, 
+      marginTop: 10}} >
 
       <BannerCarousel
         imageHeight={168}
-        style={{ borderRadius: 5, margin: 10 }}
+        style={{ borderRadius: 5 }}
         images={images}
       />
       
       <View
         style={{
-          padding: 5,
+          marginTop: 10,
+          //padding: 5,
           //alignSelf: "center",
         }}
       >
@@ -306,7 +352,7 @@ export const HomeScreen = () => {
           Popular Playstation 5 Games
         </Text>
       </View>
-      <ScrollView>
+      <ScrollView style={{}}>
         <ItemCardHorizontalScrollView
           headerShown={false}
           // imageTitleNumberOfLines={3}
@@ -315,17 +361,19 @@ export const HomeScreen = () => {
           data={[...data]}
         />
       </ScrollView>
-    </ScrollView>
+    </ScrollView> */}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   rootContainer: {
-    backgroundColor: colors.WHITE
+    backgroundColor: colors.WHITE,
+    paddingHorizontal: 10,
     //  flex: 1
   },
   searchContainer: {
+    marginTop: 10,
     // flex: 1,
     //backgroundColor: "red",
     //width: Dimensions.get('window').width,
@@ -335,6 +383,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: FONTSIZE?.MD,
+   // marginHorizontal: 10,
   },
   searchTextInput: {
     //flex: 1,

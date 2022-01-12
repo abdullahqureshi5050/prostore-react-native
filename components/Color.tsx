@@ -29,9 +29,9 @@ export const colors = {
   // general settings 
   FOREST_GREEN: "#26828B",//"forestgreen",
   BLACK: "black",
-  DIM_GRAY: "dimgray",
+  DIM_GRAY: "#EAEAEA",
   WHITE: "white",
-  DARK_GRAY: "#333333",
+  DARK_GRAY: "#AAAAAA",
   android: {
     blue: "#2196F3",
   },

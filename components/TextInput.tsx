@@ -49,9 +49,9 @@ const styles = StyleSheet.create({
 
   textInputContainer: {
     flexDirection: "row",
-    marginHorizontal: 10,
+    //marginHorizontal: 10,
     borderWidth: 1,
-    marginVertical: 5,
+    //marginVertical: 5,
     paddingHorizontal: 10,
     borderRadius: 10,
   },

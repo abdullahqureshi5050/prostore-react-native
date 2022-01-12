@@ -6,11 +6,12 @@ import {
   onScrollHandlerFunc,
 } from "../components/ComponentLayoutandScrollHandler";
 import { Divider } from "../components/Divider";
-export const SettingsScreen = ({ navigation }: any) => {
+
+export const AccountScreen = ({ navigation }: any) => {
 
   const [headingHeightState, setHeadingHeightState] = useState(0);
   const [TextHeightState, setTextHeightState] = useState(0);
-  const [settingsScreenShownState, setsettingsScreenShownState] = useState(false);
+  const [AccountScreenShownState, setAccountScreenShownState] = useState(false);
   //const onScrollRef = useRef(()=>console.log(`it's scrolled from ref`)).current;
   const Fn = () => {
     return (
@@ -31,12 +32,12 @@ export const SettingsScreen = ({ navigation }: any) => {
     if (!res.error && (res.contentOffset_Y || res.contentOffset_Y==0)) {
       // if content scrolling on Y-axis is >= component height from top of the screen
       if (res.contentOffset_Y >= TextHeightState) {
-        setsettingsScreenShownState(true);
-        navigation.setOptions({ headerTitle : "Settings" })
+        setAccountScreenShownState(true);
+        navigation.setOptions({ headerTitle : "Account" })
         // Alert.alert("Alert", ">= case");
       } else {
        // Alert.alert("Alert", "< case");
-        setsettingsScreenShownState(false)
+        setAccountScreenShownState(false)
         navigation.setOptions({headerTitle : '' })
       }
     } else if(res.error) 

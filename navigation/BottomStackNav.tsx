@@ -1,19 +1,13 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Dimensions } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { LoginScreen } from "../screens/Login.screen";
 import { SignUpScreen } from "../screens/Signup.screen";
-import { SettingsScreen } from "../screens/Settings.screen";
+import { AccountScreen } from "../screens/Account.screen";
 import { HomeScreen } from "../screens/Home.screen";
 //import AppScreen from "../screens/App.screen";
-import {
-  Ionicons,
-  Entypo,
-  Feather,
-  FontAwesome5,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors } from "../components/Color";
 
 //const Tab = createMaterialBottomTabNavigator();
@@ -26,31 +20,86 @@ export const BottomStackNav = function () {
       screenOptions={{
         tabBarInactiveTintColor: colors.FOREST_GREEN,
         tabBarActiveTintColor: colors.BLACK,
-        headerRight: (props)=>{
-          return <MaterialCommunityIcons name="bell-outline" size={24} color={colors.FOREST_GREEN} />
+        headerRight: (props) => {
+          return (
+            <MaterialCommunityIcons
+              name="bell-outline"
+              size={24}
+              color={colors.FOREST_GREEN}
+              onPress={() => {
+                console.log("notification icon pressed");
+              }}
+            />
+          );
         },
-        headerTitle: '',
+
         // default undefined
         headerLeftLabelVisible: false,
-        headerLeft: (props)=>{
-         return props.labelVisible && <MaterialCommunityIcons name="keyboard-backspace" size={24} color={props.tintColor || colors.FOREST_GREEN} />
-        }  
+        headerLeft: (props) => {
+          return (
+            props.labelVisible && (
+              <MaterialCommunityIcons
+                name="keyboard-backspace"
+                size={24}
+                color={props.tintColor || colors.FOREST_GREEN}
+              />
+            )
+          );
+          // return <MaterialCommunityIcons name="keyboard-backspace" size={24} color={props.tintColor || colors.FOREST_GREEN} />
+        },
 
+        //All header titles in Top Nav
+        //headerTitle: '',
+        headerTitleAlign: "center",
+        headerStyle: {
+          height: 40,
+          borderBottomWidth: 0.5,
+          borderBottomColor: colors.FOREST_GREEN,
+          //backgroundColor: 'red',
+        },
+        tabBarStyle: {
+          paddingBottom: 5,
+        },
+
+        headerRightContainerStyle: {
+          //flex: 0,
+          marginRight: 10,
+        },
+
+        headerLeftContainerStyle: {
+          marginLeft: 10,
+        },
       }}
     >
       <Tab.Screen
         name="Home"
         component={HomeScreen}
-        options={{
-          //headerTintColor: colors.FOREST_GREEN,
-          // tabBarActiveTintColor: colors.FOREST_GREEN,
-          //headerShown: false,
-          headerStyle: {
-            height: 30, // Specify the height of your custom header
+        options={({ route, navigation }) => ({
+          
+          headerRight: (props) => {
+            return (
+              <MaterialCommunityIcons
+                name="bell-outline"
+                size={24}
+                color={colors.FOREST_GREEN}
+                onPress={() => {
+                  navigation.navigate({ 
+                    //name = "component" in stack navaigation, not screen prop "name" property.
+                    name: 'NotificationScreen', });
+                }}
+              />
+            );
           },
+          // headerTintColor: colors.FOREST_GREEN,
+          // tabBarActiveTintColor: colors.FOREST_GREEN,
+           //headerShown: false,
+          // headerStyle: {
+          //   height: 30, // Specify the height of your custom header
+          // },
           //headerTitleStyle: {width: '100%', alignItems: 'flex-end', backgroundColor: 'red', fontSize: 20},
           //headerTitleAllowFontScaling: true,
           //headerRightContainerStyle: { maxWidth: 30, alignItems: 'flex-end' , backgroundColor: 'lightblue'},
+          
           tabBarIcon: (props: any) => {
             return props.focused ? (
               <MaterialCommunityIcons
@@ -66,7 +115,7 @@ export const BottomStackNav = function () {
               />
             );
           },
-        }}
+        })}
       />
       <Tab.Screen
         name="My Lists"
@@ -74,9 +123,9 @@ export const BottomStackNav = function () {
         options={{
           //  tabBarActiveTintColor: colors.FOREST_GREEN,
           // headerShown: true,
-          headerStyle: {
-            height: 30, // Specify the height of your custom header
-          },
+          // headerStyle: {
+          //   height: 30, // Specify the height of your custom header
+          // },
           tabBarIcon: (props: any) => {
             return props.focused ? (
               <MaterialCommunityIcons
@@ -100,9 +149,9 @@ export const BottomStackNav = function () {
         options={{
           //  tabBarActiveTintColor: colors.FOREST_GREEN,
           //  headerShown: true,
-          headerStyle: {
-            height: 30, // Specify the height of your custom header
-          },
+          // headerStyle: {
+          //   height: 30, // Specify the height of your custom header
+          // },
           //tabBarShowLabel: false,
           // tabBarShowLabel: false,
           //title: undefined,
@@ -121,7 +170,7 @@ export const BottomStackNav = function () {
             height: 0,
           },
           tabBarIcon: (props: any) => {
-            return  props.focused ? (
+            return props.focused ? (
               <View
                 style={{
                   // width: 30,
@@ -135,7 +184,7 @@ export const BottomStackNav = function () {
                   //borderWidth: "rgba(255, 0, 0, .5)",
                   borderColor: colors.BLACK,
                   backgroundColor: "white",
-                  elevation: 10,
+                  elevation: 5,
                   //shadowOpacity: 1,
                   shadowColor: colors.BLACK,
                   alignItems: "baseline",
@@ -148,7 +197,7 @@ export const BottomStackNav = function () {
                   color={props.color || colors.FOREST_GREEN}
                 />
               </View>
-            ): (
+            ) : (
               <View
                 style={{
                   // width: 30,
@@ -157,12 +206,12 @@ export const BottomStackNav = function () {
                   // alignContent: 'center',
                   // alignSelf: 'center',
                   borderRadius: 5,
-                  borderWidth: 1,
-                  //opacity: 0.2,
+                  borderWidth: 0.5,
+                  //opacity: 0.5,
                   //borderWidth: "rgba(255, 0, 0, .5)",
                   borderColor: colors.FOREST_GREEN,
                   backgroundColor: "white",
-                  elevation: 10,
+                  elevation: 5,
                   //shadowOpacity: 1,
                   shadowColor: colors.FOREST_GREEN,
                   alignItems: "baseline",
@@ -171,13 +220,13 @@ export const BottomStackNav = function () {
                 <MaterialCommunityIcons
                   //name="plus"
                   name="plus"
-                  size={props.size || 24}
+                  size={30}
                   color={props.color || colors.FOREST_GREEN}
                 />
               </View>
             );
           },
-                  }}
+        }}
       />
       <Tab.Screen
         name="Orders"
@@ -185,9 +234,9 @@ export const BottomStackNav = function () {
         options={{
           //  headerShown: true,
           //  tabBarActiveTintColor: colors.FOREST_GREEN,
-          headerStyle: {
-            height: 30, // Specify the height of your custom header
-          },
+          // headerStyle: {
+          //   height: 30, // Specify the height of your custom header
+          // },
           tabBarIcon: (props: any) => {
             return props.focused ? (
               <MaterialCommunityIcons
@@ -206,9 +255,9 @@ export const BottomStackNav = function () {
         }}
       />
       <Tab.Screen
-        name="Settings"
-        //children={<settingsScreen props={'so'} />}
-        component={SettingsScreen}
+        name="Account"
+        //children={<AccountScreen props={'so'} />}
+        component={AccountScreen}
         // options={({ route }) => ({
         //   title: route.params.name
         // })}
@@ -217,9 +266,9 @@ export const BottomStackNav = function () {
           // headerShown: (props: boolean) => <LogoTitle {...props} />,
           //  tabBarActiveTintColor: colors.FOREST_GREEN,
           //headerShown: (route.params) ? (route.params): false,
-          headerStyle: {
-            height: 30, // Specify the height of your custom header
-          },
+          // headerStyle: {
+          //   height: 30, // Specify the height of your custom header
+          // },
           tabBarIcon: (props: any) => {
             return props.focused ? (
               <MaterialCommunityIcons
