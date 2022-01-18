@@ -1,8 +1,18 @@
 import React, { ReactElement, useState } from "react";
-import { StyleProp, StyleSheet, TextInput, TextStyle, View, ViewStyle } from "react-native";
+import { NativeSyntheticEvent, NativeTouchEvent, StyleProp, StyleSheet, TextInput, TextInputFocusEventData, TextStyle, View, ViewStyle } from "react-native";
 import PropTypes from 'prop-types';
 
 type textInputProps = {
+ /**
+     * Callback that is called when the text input is focused
+     */
+  onFocus?: ((e: NativeSyntheticEvent<TextInputFocusEventData>) => void) | undefined;
+
+    /**
+     * Callback that is called when the text input is blurred
+     */
+     onBlur?: ((e: NativeSyntheticEvent<TextInputFocusEventData>) => void) | undefined;
+
   textInputContainerStyle?:  ViewStyle,
   textInputStyle?: TextStyle,
   iconStyle?: ViewStyle,
@@ -17,7 +27,7 @@ type textInputProps = {
 export const TextInputC = (props: textInputProps) => {
   
   const [textState, setTextState] = useState("");
-
+  
   return (
     <View style={{...styles.textInputContainer, ...props.textInputContainerStyle }}>
       <View style={{...styles.iconView, ...props.iconStyle}}>{props.icon}</View>
@@ -26,6 +36,8 @@ export const TextInputC = (props: textInputProps) => {
     //overflow: "hidden",
     }}}>
         <TextInput
+          onFocus={ props.onFocus}
+          onBlur={ props.onBlur}
           style={{...styles.textInput, ...props.textInputStyle }}
           onChangeText={setTextState}
           value={textState}

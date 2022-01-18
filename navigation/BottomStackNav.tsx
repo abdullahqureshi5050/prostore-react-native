@@ -34,7 +34,7 @@ export const BottomStackNav = function () {
         },
 
         // default undefined
-        headerLeftLabelVisible: false,
+        headerLeftLabelVisible: true,
         headerLeft: (props) => {
           return (
             props.labelVisible && (
@@ -63,11 +63,11 @@ export const BottomStackNav = function () {
 
         headerRightContainerStyle: {
           //flex: 0,
-          marginRight: 10,
+          paddingRight: 10,
         },
 
         headerLeftContainerStyle: {
-          marginLeft: 10,
+          paddingLeft: 10,
         },
       }}
     >

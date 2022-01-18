@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -19,6 +19,9 @@ import { BannerCarousel } from "../components/BannerCarousel";
 import { images as img } from "../components/Images";
 import { colors } from "../components/Color";
 import { ShadowC } from "../components/Shadow";
+import { MediaCard } from "../components/MediaCard";
+import { ItemCardSmall } from "../components/ItemCardSmall";
+import { ItemCardMediaHorizontalScrollView } from "../components/ItemCardMediaHorizontalScrollView";
 
 const images = [img.fh5, img.uc4, img.fh5, img.uc4];
 const data = [
@@ -181,8 +184,13 @@ const data = [
 
 export const HomeScreen = (props: any) => {
   
-  const [ItemSearchState, setItemSearchState] = useState(false)  
-
+  const [itemSearchState, setItemSearchState] = useState(true)  
+  useEffect(() => {
+    
+    return () => {
+      
+    }
+  }, [itemSearchState])
   return (
     <View style={styles.rootContainer}>
      
@@ -264,6 +272,8 @@ export const HomeScreen = (props: any) => {
         >
           {/* Search on page */}
           <TextInputC
+            onFocus={()=>setItemSearchState(false)}
+            onBlur={()=> setItemSearchState(true) }
             textInputContainerStyle={{
               borderRadius: 5,
               borderColor: colors.DIM_GRAY,
@@ -329,11 +339,13 @@ export const HomeScreen = (props: any) => {
         {/* </ShadowC> */}
       </View>
 
-    
-    {/* <ScrollView style={{
+      {itemSearchState && 
+          
+     <ScrollView style={{
       // marginBottom will set scroll bottom offset beyond max range to scroll futher. 
-      marginBottom: 90, 
-      marginTop: 10}} >
+      marginBottom: 95, 
+      marginTop: 10
+      }} >
 
       <BannerCarousel
         imageHeight={168}
@@ -361,7 +373,33 @@ export const HomeScreen = (props: any) => {
           data={[...data]}
         />
       </ScrollView>
-    </ScrollView> */}
+      <View
+        style={{
+          marginTop: 10,
+          //padding: 5,
+          //alignSelf: "center",
+        }}
+      >
+        <Text style={{ ...styles.headerText }}>
+          Games Selling Near Now
+        </Text>
+      </View>
+      <ItemCardMediaHorizontalScrollView 
+        source={{ uri: "https://picsum.photos/200/300"}} 
+        imageHeight={90} 
+        imageWidth={100} 
+      />
+      {/* <MediaCard
+        title={"Battlefield V"}
+        imageStyle={{ width: 120, height: 180 }}
+        price={50000}
+        icon={{
+          uri: "https://picsum.photos/200/300",
+          image: require("../assets/images/igdb/UNCHARTERED.jpg"),
+        }}
+        source={{ image: require("../assets/images/igdb/BF5.jpg") }}
+      /> */}
+    </ScrollView> }
     </View>
   );
 };
