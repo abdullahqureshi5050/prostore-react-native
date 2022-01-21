@@ -11,26 +11,43 @@ import {
 import { FONTSIZE } from "../static/FontSize";
 import { colors } from "./Color";
 
-export interface ImageProps {
+type mediaCardProps = {
   //imageStyle?: StyleProp<ImageStyle> | undefined;
   style?: ViewStyle | undefined;
-  imageHeight: number;
-  imageWidth: number;
-  source: {
+  imageHeight?: number | string;
+  imageWidth?: number | string;
+  imageSource: {
     image?: ImageSourcePropType;
     uri?: any;
   };
-}
+  iconSource?: {
+    image?: ImageSourcePropType;
+    uri?: any;
+  };
+  iconHeight?: number | string;
+  iconWidth?: number | string;
+  title: string;
+  subTitle1?: string;
+  subTitle2?: string;
+  subTitleIcon1?: any;
+  subTitleIcon2?: any;
+};
 
-export const ItemCardMediaHorizontalScrollView = (props: ImageProps) => {
+export const ItemCardMediaHorizontalScrollView = (props: mediaCardProps) => {
   return (
     <View
       style={{
+        //flex:1,
+        width: 200,
+        height: 104,
         flexDirection: "row",
+        alignSelf: "baseline",
         justifyContent: "space-between",
-        borderWidth: 1,
+        //borderWidth: 1,
         borderRadius: 5,
         overflow: "hidden",
+        backgroundColor: colors.WHITE,
+        elevation: 5,
       }}
     >
       <View
@@ -39,43 +56,83 @@ export const ItemCardMediaHorizontalScrollView = (props: ImageProps) => {
         }}
       >
         <Image
+          //resizeMode='contain'
           style={{
-            width: props.imageWidth,
-            height: props.imageHeight,
+            width: props.imageWidth ? props.imageWidth : 78,
+            height: props.imageHeight ? props.imageHeight : 104,
           }}
           source={
-            (props.source?.image as ImageSourcePropType) || {
-              uri: props.source?.uri,
+            (props.imageSource?.image as ImageSourcePropType) || {
+              uri: props.imageSource?.uri,
             }
           }
         />
-        <View>
-          <Text style={{ fontSize: FONTSIZE?.[11], fontWeight: "bold" }}>
-            Media Card Comming soon..
-          </Text>
+        <View
+          style={{
+            marginTop: 5,
+            marginHorizontal: 8,
+            marginBottom: 4,
+          }}
+        >
           <View
-            style={{
-              flexDirection: "row",
-            }}
+            style={
+              {
+                //backgroundColor: 'purple',
+              }
+            }
           >
-            <MaterialCommunityIcons
-              name="map-marker-outline"
-              size={16}
-              color={colors.BLACK}
-            />
-            <Text style={{ fontSize: FONTSIZE?.[11] }}>Location</Text>
+            <Image
+              resizeMode="contain"
+              style={{
+                height: props.iconHeight ? props.iconHeight : 12,
+                width: props.iconWidth ? props.iconWidth : 52,
+                alignItems: "flex-start",
+                alignSelf: "baseline",
+                alignContent: "flex-start",
+              }}
+              source={
+                (props.iconSource?.image as ImageSourcePropType) || {
+                  uri: props.iconSource?.uri,
+                }
+              }
+            ></Image>
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-            }}
-          >
-            <MaterialCommunityIcons
-              name="clock-time-three-outline"
-              size={16}
-              color={colors.BLACK}
-            />
-            <Text style={{ fontSize: FONTSIZE?.[11] }}>time stamp</Text>
+          <View style={{ marginTop: 8, height: 30, width: 109 }}>
+            <Text
+              numberOfLines={2}
+              style={{
+                fontSize: FONTSIZE?.[11],
+                fontWeight: "bold",
+                flex: 1,
+                textAlignVertical: 'center',
+              }}
+            >
+              { props.title }
+            </Text>
+          </View>
+          <View style={{ marginLeft: 2 }}>
+            <View
+              style={{
+                flexDirection: "row",
+                marginTop: 5,
+              }}
+            >
+             {props.subTitleIcon1}
+              <Text style={{ fontSize: FONTSIZE?.[11], marginLeft: 5 }}>
+                {props.subTitle1}
+              </Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                marginTop: 5,
+              }}
+            >
+              {props.subTitleIcon2}
+              <Text style={{ fontSize: FONTSIZE?.[11], marginLeft: 5 }}>
+                {props.subTitle2}
+              </Text>
+            </View>
           </View>
         </View>
       </View>

@@ -92,7 +92,7 @@ export const BottomStackNav = function () {
           },
           // headerTintColor: colors.FOREST_GREEN,
           // tabBarActiveTintColor: colors.FOREST_GREEN,
-           //headerShown: false,
+          headerShown: false,
           // headerStyle: {
           //   height: 30, // Specify the height of your custom header
           // },

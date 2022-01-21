@@ -22,6 +22,7 @@ import { ShadowC } from "../components/Shadow";
 import { MediaCard } from "../components/MediaCard";
 import { ItemCardSmall } from "../components/ItemCardSmall";
 import { ItemCardMediaHorizontalScrollView } from "../components/ItemCardMediaHorizontalScrollView";
+import { Header } from "../navigation/Header";
 
 const images = [img.fh5, img.uc4, img.fh5, img.uc4];
 const data = [
@@ -42,12 +43,12 @@ const data = [
     imageTitleTextStyle: {
       textAlign: "center",
       // android-only-prop
-      textAlignVertical: 'center',
+      textAlignVertical: "center",
       fontSize: FONTSIZE?.[11],
-      flex:1,
-      height: 36
+      flex: 1,
+      height: 36,
     },
-  
+
     footerStyles: { justifyContent: "center", alignItems: "center" },
     source: {
       image: require("../assets/images/igdb/BF5.jpg"),
@@ -63,14 +64,14 @@ const data = [
     imageTitleContainerStyle: {
       justifyContent: "center",
       alignItems: "center",
-      height: 36
+      height: 36,
     },
     imageTitleTextStyle: {
       textAlign: "center",
       // android-only-prop
-      textAlignVertical: 'center',
+      textAlignVertical: "center",
       fontSize: FONTSIZE?.[11],
-      height: 36
+      height: 36,
     },
     footerStyles: { justifyContent: "center", alignItems: "center" },
     source: {
@@ -87,15 +88,15 @@ const data = [
     imageTitleContainerStyle: {
       justifyContent: "center",
       alignItems: "center",
-      height: 36
+      height: 36,
     },
     imageTitleTextStyle: {
       textAlign: "center",
       // android-only-prop
-      textAlignVertical: 'center',
+      textAlignVertical: "center",
       fontSize: FONTSIZE?.[11],
-      flex:1,
-      height: 180
+      flex: 1,
+      height: 180,
     },
     footerStyles: { justifyContent: "center", alignItems: "center" },
     source: {
@@ -111,15 +112,15 @@ const data = [
     imageTitleContainerStyle: {
       justifyContent: "center",
       alignItems: "center",
-      height: 36
+      height: 36,
     },
     imageTitleTextStyle: {
       textAlign: "center",
       // android-only-prop
-      textAlignVertical: 'center',
+      textAlignVertical: "center",
       fontSize: FONTSIZE?.[11],
-      flex:1,
-      height: 36
+      flex: 1,
+      height: 36,
     },
     footer: "fkljsdklfjjdgkjdjaervjdkldfjgjgdpdfl",
     footerStyles: { justifyContent: "center", alignItems: "center" },
@@ -137,15 +138,15 @@ const data = [
     imageTitleContainerStyle: {
       justifyContent: "center",
       alignItems: "center",
-      height: 36
+      height: 36,
     },
     imageTitleTextStyle: {
       textAlign: "center",
       // android-only-prop
-      textAlignVertical: 'center',
+      textAlignVertical: "center",
       fontSize: FONTSIZE?.[11],
-      flex:1,
-      height: '100%'
+      flex: 1,
+      height: "100%",
     },
     footerStyles: { justifyContent: "center", alignItems: "center" },
     source: {
@@ -163,15 +164,15 @@ const data = [
     imageTitleContainerStyle: {
       justifyContent: "center",
       alignItems: "center",
-      height: 36
+      height: 36,
     },
     imageTitleTextStyle: {
       textAlign: "center",
       // android-only-prop
-      textAlignVertical: 'center',
+      textAlignVertical: "center",
       fontSize: FONTSIZE?.[11],
-      flex:1,
-      height: '100%'
+      flex: 1,
+      height: "100%",
     },
     footerStyles: { justifyContent: "center", alignItems: "center" },
     source: {
@@ -183,61 +184,95 @@ const data = [
 ];
 
 export const HomeScreen = (props: any) => {
-  
-  const [itemSearchState, setItemSearchState] = useState(true)  
+  const [itemSearchState, setItemSearchState] = useState(true);
   useEffect(() => {
-    
-    return () => {
-      
-    }
-  }, [itemSearchState])
+    return () => {};
+  }, [itemSearchState]);
   return (
-    <View style={styles.rootContainer}>
-     
-      {/* Map-search-button */}
-      <ButtonC
-          onPress={ () => {
-            try {
-              props.navigation.navigate({ 
-                //name = "component" in stack navaigation, not screen prop "name" property.
-                name: 'Map Search', });
-            } catch (error: any) {
-              Alert.alert("Alert!", error);
-            }
-          }}
-          textContainerStyle={{
-            marginTop: 10,
-            height: 30,
-            borderRadius: 5,
-            borderColor: colors.FOREST_GREEN,
-            // backgroundColor: 'green',
-            alignItems: 'flex-start',
-            shadowColor: colors.FOREST_GREEN,
-            borderWidth: 1,
-            //borderRadius: 1,
-            // elevation: 5,
-          }}
-          title={
+    <View>
+        <Header {...props}
+          title={"Arfa Tower, Lahore."}
+          headerLeft={
             <MaterialCommunityIcons
+              name="map-marker-outline"
+              size={20}
+              color={colors.FOREST_GREEN}
+              // onPress={() => {
+              //   try {
+              //     props.navigation.navigate({
+              //       //name = "component" in stack navaigation, not screen prop "name" property.
+              //       name: "Map Search",
+              //     });
+              //   } catch (error: any) {
+              //     Alert.alert("Alert!", error);
+              //   }
+              // }}
+            />
+          }
+          headerRight={
+            <MaterialCommunityIcons
+            name="bell-outline"
+            size={24}
+            color={colors.FOREST_GREEN}
+            onPress={() => {
+              try {
+                props.navigation.navigate({
+                  //name = "component" in stack navaigation, not screen prop "name" property.
+                  name: "NotificationScreen",
+                });
+              } catch (error: any) {
+                Alert.alert("Alert!", error);
+              }
+            }}
+          />
+          }
+        />
+    <View style={styles.rootContainer}>
+
+      {/* Map-search-button */}
+      {/* <ButtonC
+        onPress={() => {
+          try {
+            props.navigation.navigate({
+              //name = "component" in stack navaigation, not screen prop "name" property.
+              name: "Map Search",
+            });
+          } catch (error: any) {
+            Alert.alert("Alert!", error);
+          }
+        }}
+        textContainerStyle={{
+          marginTop: 10,
+          height: 30,
+          borderRadius: 5,
+          borderColor: colors.FOREST_GREEN,
+          // backgroundColor: 'green',
+          alignItems: "flex-start",
+          shadowColor: colors.FOREST_GREEN,
+          borderWidth: 1,
+          //borderRadius: 1,
+          // elevation: 5,
+        }}
+        title={
+          <MaterialCommunityIcons
             name="map-marker-outline"
             size={17}
             color={colors.FOREST_GREEN}
           />
-            
-          }
-          //textContainerStyle={{ backgroundColor: "red" }}
-          //titleShown={false}
-          textStyle={{
-            marginLeft: 5,
-            // padding: 0,
-            // justifyContent: 'center' , alignContent: 'center', 
-            // textAlign: 'center', alignItems: 'center',
-            //backgroundColor: 'red',
-            // alignSelf: "flex-end",
-            //padding: 10,
-          }}
-        ></ButtonC>
-      
+        }
+        //textContainerStyle={{ backgroundColor: "red" }}
+        //titleShown={false}
+        textStyle={{
+          marginLeft: 5,
+          // padding: 0,
+          // justifyContent: 'center' , alignContent: 'center',
+          // textAlign: 'center', alignItems: 'center',
+          //backgroundColor: 'red',
+          // alignSelf: "flex-end",
+          //padding: 10,
+        }}
+      ></ButtonC> */}
+
       {/* <TextInputC
         textInputContainerStyle={{
           marginTop: 10,
@@ -262,25 +297,24 @@ export const HomeScreen = (props: any) => {
         }
       ></TextInputC> */}
 
-
       <View style={styles.searchContainer}>
         <View
           style={
-            { width: "100%", flex: 1,  }
+            { width: "100%", flex: 1 }
             //styles.searchTextInput
           }
         >
           {/* Search on page */}
           <TextInputC
-            onFocus={()=>setItemSearchState(false)}
-            onBlur={()=> setItemSearchState(true) }
+            onFocus={() => setItemSearchState(false)}
+            onBlur={() => setItemSearchState(true)}
             textInputContainerStyle={{
               borderRadius: 5,
               borderColor: colors.DIM_GRAY,
               backgroundColor: colors.DIM_GRAY,
               height: 40,
               marginRight: 0,
-              flex: 1
+              flex: 1,
             }}
             textInputStyle={{
               flex: 1,
@@ -301,10 +335,9 @@ export const HomeScreen = (props: any) => {
         </View>
 
         {/* Filter Icon  */}
-        
+
         {/* <ShadowC> */}
         <ButtonC
-
           textContainerStyle={{
             marginLeft: 10,
             justifyContent: "center",
@@ -322,14 +355,13 @@ export const HomeScreen = (props: any) => {
               size={30}
               color={colors.FOREST_GREEN}
             />
-            
           }
           //textContainerStyle={{ backgroundColor: "red" }}
           //titleShown={false}
           textStyle={{
             margin: 0,
             // padding: 0,
-            // justifyContent: 'center' , alignContent: 'center', 
+            // justifyContent: 'center' , alignContent: 'center',
             // textAlign: 'center', alignItems: 'center',
             backgroundColor: colors.WHITE,
             // alignSelf: "flex-end",
@@ -339,57 +371,115 @@ export const HomeScreen = (props: any) => {
         {/* </ShadowC> */}
       </View>
 
-      {itemSearchState && 
-          
-     <ScrollView style={{
-      // marginBottom will set scroll bottom offset beyond max range to scroll futher. 
-      marginBottom: 95, 
-      marginTop: 10
-      }} >
+      {itemSearchState && (
+        <ScrollView
+          style={{
+            // marginBottom will set scroll bottom offset beyond max range to scroll futher.
+            marginBottom: 190,
+            paddingTop: 10,
+          }}
+        >
+          <BannerCarousel
+            imageHeight={168}
+            style={{ borderRadius: 5 }}
+            images={images}
+          />
 
-      <BannerCarousel
-        imageHeight={168}
-        style={{ borderRadius: 5 }}
-        images={images}
-      />
-      
-      <View
-        style={{
-          marginTop: 10,
-          //padding: 5,
-          //alignSelf: "center",
-        }}
-      >
-        <Text style={{ ...styles.headerText }}>
-          Popular Playstation 5 Games
-        </Text>
-      </View>
-      <ScrollView style={{}}>
-        <ItemCardHorizontalScrollView
-          headerShown={false}
-          // imageTitleNumberOfLines={3}
-          styles={{ flex: 1 }}
-          headerTitle={"Header T1"}
-          data={[...data]}
-        />
-      </ScrollView>
-      <View
-        style={{
-          marginTop: 10,
-          //padding: 5,
-          //alignSelf: "center",
-        }}
-      >
-        <Text style={{ ...styles.headerText }}>
-          Games Selling Near Now
-        </Text>
-      </View>
-      <ItemCardMediaHorizontalScrollView 
-        source={{ uri: "https://picsum.photos/200/300"}} 
-        imageHeight={90} 
-        imageWidth={100} 
-      />
-      {/* <MediaCard
+          <View
+            style={{
+              marginTop: 10,
+              //padding: 5,
+              //alignSelf: "center",
+            }}
+          >
+            <Text style={{ ...styles.headerText }}>
+              Popular Playstation 5 Games
+            </Text>
+          </View>
+          <ItemCardHorizontalScrollView
+            headerShown={false}
+            // imageTitleNumberOfLines={3}
+            styles={{ flex: 1 }}
+            headerTitle={"Header T1"}
+            data={[...data]}
+          />
+
+          <View
+            style={{
+              marginTop: 10,
+              //padding: 5,
+              //alignSelf: "center",
+            }}
+          >
+            <Text style={{ ...styles.headerText }}>Games Selling Near Now</Text>
+          </View>
+          <View style={{ marginTop: 10}}>
+            <ItemCardMediaHorizontalScrollView
+              imageSource={{ image: img.igdb.spidermanMarvel }}
+              title=" Media Card"
+              subTitle1="Arfa Tower"
+              subTitle2="10 Minutes Ago"
+              subTitleIcon1={
+                <MaterialCommunityIcons
+                  name="map-marker-outline"
+                  size={16}
+                  color={colors.BLACK}
+                />
+              }
+              subTitleIcon2={
+                <MaterialCommunityIcons
+                  name="clock-time-three-outline"
+                  size={16}
+                  color={colors.BLACK}
+                />
+              }
+              //imageHeight={104}
+              //imageWidth={78}
+              iconSource={{ image: img.icon.ps4 }}
+              //iconHeight={12}
+              //iconWidth={52}
+            />
+          </View>
+
+          <View
+            style={{
+              marginTop: 10,
+              //padding: 5,
+              //alignSelf: "center",
+            }}
+          >
+            <Text style={{ ...styles.headerText }}>Games You Like</Text>
+          </View>
+
+          <View style={{ marginTop: 10, marginBottom: 20 }}>
+            <ItemCardMediaHorizontalScrollView
+              imageSource={{ image: img.igdb.guardiansOfTheGalaxyMarvel }}
+              title="guardians of the Galaxy"
+              subTitle1="From 5000 Rs"
+              subTitle2="45 Listenings"
+              subTitleIcon1={
+                <MaterialCommunityIcons
+                  name="cash"
+                  size={16}
+                  color={colors.BLACK}
+                />
+              }
+              subTitleIcon2={
+                <MaterialCommunityIcons
+                  name="card-text-outline"
+                  size={16}
+                  color={colors.BLACK}
+                />
+              }
+              //imageHeight={104}
+              //imageWidth={78}
+              iconSource={{ image: img.icon.ps4 }}
+              //iconHeight={12}
+              //iconWidth={52}
+            />
+          </View>
+  
+          {/* <MediaCard
         title={"Battlefield V"}
         imageStyle={{ width: 120, height: 180 }}
         price={50000}
@@ -399,7 +489,9 @@ export const HomeScreen = (props: any) => {
         }}
         source={{ image: require("../assets/images/igdb/BF5.jpg") }}
       /> */}
-    </ScrollView> }
+        </ScrollView>
+      )}
+    </View>
     </View>
   );
 };
@@ -421,7 +513,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: FONTSIZE?.MD,
-   // marginHorizontal: 10,
+    // marginHorizontal: 10,
   },
   searchTextInput: {
     //flex: 1,

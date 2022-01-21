@@ -22,83 +22,9 @@ export const StackNavigation = () => {
       //   //headerStyle: { backgroundColor: 'tomato' },
       // }}
       screenOptions={{
-        headerShown: true,
-        header: (props: any) => {
-          return (
-            <View
-              style={{
-                paddingHorizontal: 10,
-                height: 40,
-                borderBottomWidth: 0.5,
-                borderBottomColor: colors.FOREST_GREEN,
-                //backgroundColor: "red",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: "row",
-                }}
-              >
-                <View
-                  style={{
-                    justifyContent: "center",
-                  }}
-                >
-                  <MaterialCommunityIcons
-                    name="map-marker-outline"
-                    size={20}
-                    color={colors.FOREST_GREEN}
-                    onPress={() => {
-                      try {
-                        props.navigation.navigate({
-                          //name = "component" in stack navaigation, not screen prop "name" property.
-                          name: "Map Search",
-                        });
-                      } catch (error: any) {
-                        Alert.alert("Alert!", error);
-                      }
-                    }}
-                  />
-                </View>
-                <View
-                  style={{
-                    paddingHorizontal: 10,
-                    justifyContent: "center",
-                    //backgroundColor: 'purple',
-                    display: "flex",
-                    width: "84%",
-                  }}
-                >
-                  <Text
-                    numberOfLines={2}
-                    style={{
-                      color: colors.FOREST_GREEN,
-                      fontSize: FONTSIZE?.SM,
-                    }}
-                  >
-                    {props.title ? props.title : "Arfa Tower, Lahore."}{" "}
-                  </Text>
-                </View>
-              </View>
-              <View
-                style={{
-                  justifyContent: "center",
-                  //backgroundColor: 'pink',
-                  //alignSelf:'center',
-                }}
-              >
-                <MaterialCommunityIcons
-                  name="bell-outline"
-                  size={24}
-                  color={colors.FOREST_GREEN}
-                />
-              </View>
-            </View>
-          );
-        },
-        title: "...some address",
+        headerShown: false,
+        //header: ,
+        title: "Home",
         headerRight: (props) => {
           return (
             <MaterialCommunityIcons
@@ -113,17 +39,17 @@ export const StackNavigation = () => {
             />
           );
         },
-        headerLeft: (props) => {
-          return (
-            // props.labelVisible &&
-            <MaterialCommunityIcons
-              name="map-marker-outline"
-              size={24}
-              color={props.tintColor || colors.FOREST_GREEN}
-            />
-          );
-          // return <MaterialCommunityIcons name="keyboard-backspace" size={24} color={props.tintColor || colors.FOREST_GREEN} />
-        },
+        // headerLeft: (props) => {
+        //   return (
+        //     // props.labelVisible &&
+        //     <MaterialCommunityIcons
+        //       name="map-marker-outline"
+        //       size={24}
+        //       color={props.tintColor || colors.FOREST_GREEN}
+        //     />
+        //   );
+        //   // return <MaterialCommunityIcons name="keyboard-backspace" size={24} color={props.tintColor || colors.FOREST_GREEN} />
+        // },
         //headerStyle: ()=> {height: 60},
       }}
     >
@@ -158,7 +84,7 @@ const BottomStackScreenOptions = {
   //headerLargeTitle: true,
   //headerTitleStyle: {fontSize: 20, fontWeight: 'bold'},
   //headerTitle: 'SIVISIC',
-  headerShown: true,
+  //headerShown: true,
   headerLeft: () => {
     return (
       <MaterialCommunityIcons
