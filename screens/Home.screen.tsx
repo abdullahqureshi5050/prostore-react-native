@@ -9,6 +9,8 @@ import {
   Touchable,
   TouchableOpacity,
   Alert,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from "react-native";
 import { TextInputC } from "../components/TextInput";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -23,6 +25,7 @@ import { MediaCard } from "../components/MediaCard";
 import { ItemCardSmall } from "../components/ItemCardSmall";
 import { ItemCardMediaHorizontalScrollView } from "../components/ItemCardMediaHorizontalScrollView";
 import { Header } from "../navigation/Header";
+import { StackActions } from "@react-navigation/native";
 
 const images = [img.fh5, img.uc4, img.fh5, img.uc4];
 const data = [
@@ -184,13 +187,38 @@ const data = [
 ];
 
 export const HomeScreen = (props: any) => {
-  const [itemSearchState, setItemSearchState] = useState(true);
+  const [itemSearchFocusedState, setItemSearchFocusedState] = useState(false);
+
   useEffect(() => {
     return () => {};
-  }, [itemSearchState]);
+  }, [itemSearchFocusedState]);
+
   return (
     <View>
-        <Header {...props}
+      {itemSearchFocusedState ? (
+        <Header
+          {...props}
+          title={"Search"}
+          headerLeft={
+            <MaterialCommunityIcons
+              name="close-circle-outline"
+              size={20}
+              color={colors.FOREST_GREEN}
+              onPress={() => {
+                try {
+                  Keyboard.dismiss();
+                  setItemSearchFocusedState(false);
+                } catch (error: any) {
+                  Alert.alert("Alert!", error);
+                }
+              }}
+            />
+          }
+          //headerRight={{} }
+        />
+      ) : (
+        <Header
+          {...props}
           title={"Arfa Tower, Lahore."}
           headerLeft={
             <MaterialCommunityIcons
@@ -211,26 +239,26 @@ export const HomeScreen = (props: any) => {
           }
           headerRight={
             <MaterialCommunityIcons
-            name="bell-outline"
-            size={24}
-            color={colors.FOREST_GREEN}
-            onPress={() => {
-              try {
-                props.navigation.navigate({
-                  //name = "component" in stack navaigation, not screen prop "name" property.
-                  name: "NotificationScreen",
-                });
-              } catch (error: any) {
-                Alert.alert("Alert!", error);
-              }
-            }}
-          />
+              name="bell-outline"
+              size={24}
+              color={colors.FOREST_GREEN}
+              onPress={() => {
+                try {
+                  props.navigation.navigate({
+                    //name = "component" in stack navaigation, not screen prop "name" property.
+                    name: "NotificationScreen",
+                  });
+                } catch (error: any) {
+                  Alert.alert("Alert!", error);
+                }
+              }}
+            />
           }
         />
-    <View style={styles.rootContainer}>
-
-      {/* Map-search-button */}
-      {/* <ButtonC
+      )}
+      <View style={styles.rootContainer}>
+        {/* Map-search-button */}
+        {/* <ButtonC
         onPress={() => {
           try {
             props.navigation.navigate({
@@ -273,7 +301,7 @@ export const HomeScreen = (props: any) => {
         }}
       ></ButtonC> */}
 
-      {/* <TextInputC
+        {/* <TextInputC
         textInputContainerStyle={{
           marginTop: 10,
           height: 30,
@@ -297,189 +325,195 @@ export const HomeScreen = (props: any) => {
         }
       ></TextInputC> */}
 
-      <View style={styles.searchContainer}>
-        <View
-          style={
-            { width: "100%", flex: 1 }
-            //styles.searchTextInput
-          }
-        >
-          {/* Search on page */}
-          <TextInputC
-            onFocus={() => setItemSearchState(false)}
-            onBlur={() => setItemSearchState(true)}
-            textInputContainerStyle={{
-              borderRadius: 5,
-              borderColor: colors.DIM_GRAY,
-              backgroundColor: colors.DIM_GRAY,
-              height: 40,
-              marginRight: 0,
-              flex: 1,
+        <TouchableWithoutFeedback>
+          <View style={styles.searchContainer}>
+            <View
+              style={
+                { width: "100%", flex: 1 }
+                //styles.searchTextInput
+              }
+              //onPress={Keyboard.dismiss}
+              //accessible={false}
+            >
+              {/* Search on page */}
+              <TextInputC
+                onFocus={() => setItemSearchFocusedState(true)}
+                //onBlur={() => setItemSearchFocusedState(false)}
+                textInputContainerStyle={{
+                  borderRadius: 5,
+                  borderColor: colors.DIM_GRAY,
+                  backgroundColor: colors.DIM_GRAY,
+                  height: 40,
+                  marginRight: 0,
+                  flex: 1,
+                }}
+                textInputStyle={{
+                  flex: 1,
+                  marginVertical: 0,
+                  marginRight: 0,
+                  fontSize: FONTSIZE?.SM,
+                  color: colors.DARK_GRAY,
+                }}
+                placeholder="Search Items to Buy"
+                icon={
+                  <MaterialCommunityIcons
+                    name="magnify"
+                    size={24}
+                    color={colors.DARK_GRAY}
+                  />
+                }
+              ></TextInputC>
+            </View>
+
+            {/* Filter Icon  */}
+
+            {/* <ShadowC> */}
+            <ButtonC
+              textContainerStyle={{
+                marginLeft: 10,
+                justifyContent: "center",
+                alignContent: "center",
+                alignItems: "center",
+                borderColor: colors.FOREST_GREEN,
+                shadowColor: colors.FOREST_GREEN,
+                borderWidth: 1,
+                //borderRadius: 1,
+                elevation: 5,
+              }}
+              title={
+                <MaterialCommunityIcons
+                  name="filter-outline"
+                  size={30}
+                  color={colors.FOREST_GREEN}
+                />
+              }
+              //textContainerStyle={{ backgroundColor: "red" }}
+              //titleShown={false}
+              textStyle={{
+                margin: 0,
+                // padding: 0,
+                // justifyContent: 'center' , alignContent: 'center',
+                // textAlign: 'center', alignItems: 'center',
+                backgroundColor: colors.WHITE,
+                // alignSelf: "flex-end",
+                //padding: 10,
+              }}
+            ></ButtonC>
+            {/* </ShadowC> */}
+          </View>
+        </TouchableWithoutFeedback>
+
+        {!itemSearchFocusedState && (
+          <ScrollView
+            style={{
+              // marginBottom will set scroll bottom offset beyond max range to scroll futher.
+              marginBottom: 200,
+              //paddingTop: 10,
             }}
-            textInputStyle={{
-              flex: 1,
-              marginVertical: 0,
-              marginRight: 0,
-              fontSize: FONTSIZE?.SM,
-              color: colors.DARK_GRAY,
-            }}
-            placeholder="Search Items to Buy"
-            icon={
-              <MaterialCommunityIcons
-                name="magnify"
-                size={24}
-                color={colors.DARK_GRAY}
+          >
+            <BannerCarousel
+              imageHeight={168}
+              style={{ borderRadius: 5 }}
+              images={images}
+            />
+
+            <View
+              style={{
+                marginTop: 10,
+                //padding: 5,
+                //alignSelf: "center",
+              }}
+            >
+              <Text style={{ ...styles.headerText }}>
+                Popular Playstation 5 Games
+              </Text>
+            </View>
+            <ItemCardHorizontalScrollView
+              headerShown={false}
+              // imageTitleNumberOfLines={3}
+              styles={{ flex: 1 }}
+              headerTitle={"Header T1"}
+              data={[...data]}
+            />
+
+            <View
+              style={{
+                marginTop: 10,
+                //padding: 5,
+                //alignSelf: "center",
+              }}
+            >
+              <Text style={{ ...styles.headerText }}>
+                Games Selling Near Now
+              </Text>
+            </View>
+            <View style={{ marginTop: 10 }}>
+              <ItemCardMediaHorizontalScrollView
+                imageSource={{ image: img.igdb.spidermanMarvel }}
+                title=" Media Card"
+                subTitle1="Arfa Tower"
+                subTitle2="10 Minutes Ago"
+                subTitleIcon1={
+                  <MaterialCommunityIcons
+                    name="map-marker-outline"
+                    size={16}
+                    color={colors.BLACK}
+                  />
+                }
+                subTitleIcon2={
+                  <MaterialCommunityIcons
+                    name="clock-time-three-outline"
+                    size={16}
+                    color={colors.BLACK}
+                  />
+                }
+                //imageHeight={104}
+                //imageWidth={78}
+                iconSource={{ image: img.icon.ps4 }}
+                //iconHeight={12}
+                //iconWidth={52}
               />
-            }
-          ></TextInputC>
-        </View>
+            </View>
 
-        {/* Filter Icon  */}
+            <View
+              style={{
+                marginTop: 10,
+                //padding: 5,
+                //alignSelf: "center",
+              }}
+            >
+              <Text style={{ ...styles.headerText }}>Games You Like</Text>
+            </View>
 
-        {/* <ShadowC> */}
-        <ButtonC
-          textContainerStyle={{
-            marginLeft: 10,
-            justifyContent: "center",
-            alignContent: "center",
-            alignItems: "center",
-            borderColor: colors.FOREST_GREEN,
-            shadowColor: colors.FOREST_GREEN,
-            borderWidth: 1,
-            //borderRadius: 1,
-            elevation: 5,
-          }}
-          title={
-            <MaterialCommunityIcons
-              name="filter-outline"
-              size={30}
-              color={colors.FOREST_GREEN}
-            />
-          }
-          //textContainerStyle={{ backgroundColor: "red" }}
-          //titleShown={false}
-          textStyle={{
-            margin: 0,
-            // padding: 0,
-            // justifyContent: 'center' , alignContent: 'center',
-            // textAlign: 'center', alignItems: 'center',
-            backgroundColor: colors.WHITE,
-            // alignSelf: "flex-end",
-            //padding: 10,
-          }}
-        ></ButtonC>
-        {/* </ShadowC> */}
-      </View>
+            <View style={{ marginTop: 10, marginBottom: 20 }}>
+              <ItemCardMediaHorizontalScrollView
+                imageSource={{ image: img.igdb.guardiansOfTheGalaxyMarvel }}
+                title="guardians of the Galaxy"
+                subTitle1="From 5000 Rs"
+                subTitle2="45 Listenings"
+                subTitleIcon1={
+                  <MaterialCommunityIcons
+                    name="cash"
+                    size={16}
+                    color={colors.BLACK}
+                  />
+                }
+                subTitleIcon2={
+                  <MaterialCommunityIcons
+                    name="card-text-outline"
+                    size={16}
+                    color={colors.BLACK}
+                  />
+                }
+                //imageHeight={104}
+                //imageWidth={78}
+                iconSource={{ image: img.icon.ps4 }}
+                //iconHeight={12}
+                //iconWidth={52}
+              />
+            </View>
 
-      {itemSearchState && (
-        <ScrollView
-          style={{
-            // marginBottom will set scroll bottom offset beyond max range to scroll futher.
-            marginBottom: 190,
-            paddingTop: 10,
-          }}
-        >
-          <BannerCarousel
-            imageHeight={168}
-            style={{ borderRadius: 5 }}
-            images={images}
-          />
-
-          <View
-            style={{
-              marginTop: 10,
-              //padding: 5,
-              //alignSelf: "center",
-            }}
-          >
-            <Text style={{ ...styles.headerText }}>
-              Popular Playstation 5 Games
-            </Text>
-          </View>
-          <ItemCardHorizontalScrollView
-            headerShown={false}
-            // imageTitleNumberOfLines={3}
-            styles={{ flex: 1 }}
-            headerTitle={"Header T1"}
-            data={[...data]}
-          />
-
-          <View
-            style={{
-              marginTop: 10,
-              //padding: 5,
-              //alignSelf: "center",
-            }}
-          >
-            <Text style={{ ...styles.headerText }}>Games Selling Near Now</Text>
-          </View>
-          <View style={{ marginTop: 10}}>
-            <ItemCardMediaHorizontalScrollView
-              imageSource={{ image: img.igdb.spidermanMarvel }}
-              title=" Media Card"
-              subTitle1="Arfa Tower"
-              subTitle2="10 Minutes Ago"
-              subTitleIcon1={
-                <MaterialCommunityIcons
-                  name="map-marker-outline"
-                  size={16}
-                  color={colors.BLACK}
-                />
-              }
-              subTitleIcon2={
-                <MaterialCommunityIcons
-                  name="clock-time-three-outline"
-                  size={16}
-                  color={colors.BLACK}
-                />
-              }
-              //imageHeight={104}
-              //imageWidth={78}
-              iconSource={{ image: img.icon.ps4 }}
-              //iconHeight={12}
-              //iconWidth={52}
-            />
-          </View>
-
-          <View
-            style={{
-              marginTop: 10,
-              //padding: 5,
-              //alignSelf: "center",
-            }}
-          >
-            <Text style={{ ...styles.headerText }}>Games You Like</Text>
-          </View>
-
-          <View style={{ marginTop: 10, marginBottom: 20 }}>
-            <ItemCardMediaHorizontalScrollView
-              imageSource={{ image: img.igdb.guardiansOfTheGalaxyMarvel }}
-              title="guardians of the Galaxy"
-              subTitle1="From 5000 Rs"
-              subTitle2="45 Listenings"
-              subTitleIcon1={
-                <MaterialCommunityIcons
-                  name="cash"
-                  size={16}
-                  color={colors.BLACK}
-                />
-              }
-              subTitleIcon2={
-                <MaterialCommunityIcons
-                  name="card-text-outline"
-                  size={16}
-                  color={colors.BLACK}
-                />
-              }
-              //imageHeight={104}
-              //imageWidth={78}
-              iconSource={{ image: img.icon.ps4 }}
-              //iconHeight={12}
-              //iconWidth={52}
-            />
-          </View>
-  
-          {/* <MediaCard
+            {/* <MediaCard
         title={"Battlefield V"}
         imageStyle={{ width: 120, height: 180 }}
         price={50000}
@@ -489,9 +523,9 @@ export const HomeScreen = (props: any) => {
         }}
         source={{ image: require("../assets/images/igdb/BF5.jpg") }}
       /> */}
-        </ScrollView>
-      )}
-    </View>
+          </ScrollView>
+        )}
+      </View>
     </View>
   );
 };
@@ -503,7 +537,7 @@ const styles = StyleSheet.create({
     //  flex: 1
   },
   searchContainer: {
-    marginTop: 10,
+    marginVertical: 10,
     // flex: 1,
     //backgroundColor: "red",
     //width: Dimensions.get('window').width,

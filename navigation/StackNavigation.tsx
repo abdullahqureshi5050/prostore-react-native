@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { SignUpScreen } from "../screens/Signup.screen";
 import { NotificationScreen } from "../screens/Notification.screen";
+import { SearchItemScreen } from "../screens/SearchItem.screen";
 import { MapSearchScreen } from "../screens/MapSearch.screen";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { BottomStackNav } from "./BottomStackNav";
@@ -72,6 +73,11 @@ export const StackNavigation = () => {
       <Stack.Screen
         name="NotificationScreen"
         component={NotificationScreen}
+        options={({ navigation }) => NotificationScreenOptions}
+      />
+      <Stack.Screen
+        name="SearchScreen"
+        component={SearchItemScreen}
         options={({ navigation }) => NotificationScreenOptions}
       />
     </Stack.Navigator>

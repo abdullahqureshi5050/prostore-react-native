@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
   paragraph: {
     fontSize: 15,
-    color: colors.DIM_GRAY,
+    color: colors.BLACK,
   },
   checkbox: {
     margin: 8,
